@@ -1,99 +1,63 @@
+# 🎵 Java Music Streaming Bot
 
-# 🎵 Java Music Streaming Bot / Music Player
-
-A modern, cross-platform music streaming and playback application built in **Java** with seamless **Python integration**. It supports playing, downloading, and managing songs from platforms like **YouTube** and **Spotify**, demonstrating strong **OOP** principles and modular design.
+A music streaming application built using **Java** with support for Python integration, designed to play songs from platforms like **YouTube** and **Spotify**.  
+This project demonstrates the use of **Object-Oriented Programming (OOP)** principles to build a scalable and maintainable system.
 
 ---
 
 ## 🚀 Features
-- Play music using song names or direct links (YouTube/Spotify)
-- Queue, skip, pause, and resume functionalities
-- Playlist management for continuous streaming
-- Download songs from Spotify, YouTube, and more using `spotdl` and `yt-dlp`
-- High-quality audio playback powered by ffmpeg/JLayer
-- Metadata fetching and album art
-- Java-based GUI (JavaFX/Swing) and CLI support
-- Cross-platform: Windows, Linux, macOS
+- Play music using names or direct links (YouTube/Spotify).
+- Queue, skip, pause, and resume functionalities.
+- Playlist support for continuous streaming.
+- Backend integration with Python libraries (e.g., `spotdl`, `yt-dlp`) for music extraction.
+- Java-based frontend for user interaction.
+- Cross-platform compatibility (Windows, Linux, macOS).
 
 ---
 
-## 🛠️ Tech Stack & Prerequisites
+## 🛠️ Tech Stack
 
-**Backend:**
-- Java (core logic, bot framework, playback)
-- Python integration (music extraction/streaming via `spotdl`, `yt-dlp`)
-- JLayer / JavaZoom / ffmpeg (audio playback)
+### Backend
+- **Java** → Core application logic and bot framework.
+- **Python Integration** → Handles music extraction and streaming (via `spotdl` or `yt-dlp`).
+- **JLayer / JavaZoom** → Audio playback in Java.
 
-**Frontend:**
-- JavaFX / Swing (GUI)
-- CLI (terminal usage)
+### Frontend
+- **JavaFX / Swing** → GUI for user interaction and controls.
+- **CLI Support** → Run in terminal for lightweight usage.
 
-**Database (optional):**
-- SQLite / MySQL (user preferences, playlists, history)
-
-**Prerequisites:**
-- [JDK 17+](https://adoptium.net/) (JDK 21 recommended)
-- [spot-dl](https://github.com/spotDL/spotify-downloader) installed and in PATH
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) installed and in PATH
-- [ffmpeg](https://ffmpeg.org/) installed and in PATH
-
----
-
-## 📦 Installation & Setup
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/Karunesh-18/MusicPlayer.git
-   cd MusicPlayer
-   ```
-2. **Install dependencies:**
-   - Install spot-dl, yt-dlp, and ffmpeg as per their documentation.
-3. **Build the project:**
-   - Use your preferred Java build tool (e.g., Maven/Gradle) to build the project.
-4. **Run the application:**
-   ```sh
-   java -jar target/MusicPlayer.jar
-   ```
-
----
-
-## 💻 Usage
-- **Search for a song:** Enter the song/artist name in the search bar.
-- **Download:** Click the download button to fetch the song using spot-dl/yt-dlp.
-- **Play:** Use the built-in player to listen to your downloaded songs.
-- **Manage playlists:** Add or remove songs from playlists.
+### Database (Optional)
+- **SQLite / MySQL** 
+  - Store user preferences
+  - Save playlists and history
+  - Manage configurations
 
 ---
 
 ## 🎯 OOP Concepts Applied
-1. **Encapsulation:** Playback, queue management, and user controls are enclosed within dedicated classes (e.g., `MusicPlayer` hides low-level logic).
-2. **Abstraction:** Abstract classes/interfaces define contracts for audio sources (e.g., `AudioSource` for YouTube/Spotify).
-3. **Inheritance:** Audio sources (YouTube, Spotify, Local Files) extend a base `AudioSource` class.
-4. **Polymorphism:** A single method call (e.g., `play()`) can handle any audio source dynamically.
-5. **Modularity:** Modules for playback, queue, integration, and UI.
 
----
+1. **Encapsulation**  
+   - Audio playback, queue management, and user controls are enclosed within dedicated classes.  
+   - Example: `MusicPlayer` class hides low-level playback logic and exposes only play/pause/stop methods.
 
-## 🔌 Python Integration
-- Python handles music downloading/streaming using `spotdl` and `yt-dlp`.
-- Java communicates with Python via **ProcessBuilder** (direct script execution) or **gRPC/REST API** (for scalability).
-- This hybrid model leverages Python's music APIs and Java’s OOP/UI strengths.
+2. **Abstraction**  
+   - Abstract classes and interfaces define contracts for audio sources (e.g., `AudioSource` for YouTube/Spotify).  
+   - The user doesn’t worry about underlying implementations.
 
----
+3. **Inheritance**  
+   - Different audio sources (YouTube, Spotify, Local Files) extend a base `AudioSource` class.  
+   - Reduces redundancy and improves code reusability.
 
-## 📁 Project Structure
-- `/src` - Java source code
-- `/resources` - Static resources (icons, images, etc.)
-- `/downloads` - Downloaded songs
+4. **Polymorphism**  
+   - A single method call (e.g., `play()`) can handle any audio source dynamically.  
+   - Makes the system flexible for future integrations.
 
----
-
-## 📜 License
-[MIT](LICENSE)
-
-## 🙏 Acknowledgements
-- [spot-dl](https://github.com/spotDL/spotify-downloader)
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- [ffmpeg](https://ffmpeg.org/)
+5. **Modularity**  
+   - The project is divided into modules:  
+     - **Playback Module** → Handles streaming.  
+     - **Queue Module** → Manages track order.  
+     - **Integration Module** → Bridges Python and Java.  
+     - **UI Module** → Provides frontend.  
 
 ---
 
@@ -114,56 +78,3 @@ This hybrid model leverages the **strength of Python for music APIs** and **Java
    ```bash
    git clone https://github.com/your-username/java-music-bot.git
    cd java-music-bot
-
-# Music Player
-
-A Java-based Music Player application with a modern frontend, supporting song download and playback using [spot-dl](https://github.com/spotDL/spotify-downloader), [ffmpeg](https://ffmpeg.org/), and [yt-dlp](https://github.com/yt-dlp/yt-dlp) APIs.
-
-## Features
-- **Modern Frontend:** User-friendly interface for searching, downloading, and playing songs.
-- **Song Download:** Download songs from Spotify, YouTube, and other sources using spot-dl and yt-dlp.
-- **Audio Playback:** High-quality playback powered by ffmpeg.
-- **Playlist Management:** Create, edit, and manage playlists.
-- **Metadata Fetching:** Automatically fetch song metadata and album art.
-
-## Technologies Used AndPrerequisites
-- [JDK 21](https://adoptium.net/)
-- [spot-dl](https://github.com/spotDL/spotify-downloader) installed and in PATH
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) installed and in PATH
-- [ffmpeg](https://ffmpeg.org/) installed and in PATH
-
-## Setup & Installation
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/Karunesh-18/MusicPlayer.git
-   cd MusicPlayer
-   ```
-2. **Install dependencies:**
-   - Install spot-dl, yt-dlp, and ffmpeg as per their documentation.
-3. **Build the project:**
-
-4. **Run the application:**
-   ```sh
-   java -jar target/MusicPlayer.jar
-   ```
-
-## Usage
-- **Search for a song:** Enter the song/artist name in the search bar.
-- **Download:** Click the download button to fetch the song using spot-dl/yt-dlp.
-- **Play:** Use the built-in player to listen to your downloaded songs.
-- **Manage playlists:** Add or remove songs from playlists.
-
-## Project Structure
-- `/src` - Java source code
-- `/resources` - Static resources (icons, images, etc.)
-- `/downloads` - Downloaded songs
-
-
-## License
-[MIT](LICENSE)
-
-## Acknowledgements
-- [spot-dl](https://github.com/spotDL/spotify-downloader)
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- [ffmpeg](https://ffmpeg.org/)
-
