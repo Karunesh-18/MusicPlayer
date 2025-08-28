@@ -1,0 +1,12 @@
+# .gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.class
+*.jar
+*.log
+.env
+python/.env
+.idea/
+.vscode/
+downloads/

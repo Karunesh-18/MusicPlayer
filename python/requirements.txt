@@ -1,0 +1,4 @@
+# requirements.txt
+spotdl
+yt-dlp
+jep

@@ -17,36 +17,40 @@ A Java-based Music Player application with a modern frontend, supporting song do
 
 ## Setup & Installation
 1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/Karunesh-18/MusicPlayer.git
-   cd MusicPlayer
-   ```
-2. **Install dependencies:**
-   - Install spot-dl, yt-dlp, and ffmpeg as per their documentation.
-3. **Build the project:**
+   # MusicPlayer
 
-4. **Run the application:**
-   ```sh
-   java -jar target/MusicPlayer.jar
-   ```
+   A cross-platform desktop music player using Java for UI/UX and backend, and Python for music downloading and processing (spotdl, yt-dlp, ffmpeg).
 
-## Usage
-- **Search for a song:** Enter the song/artist name in the search bar.
-- **Download:** Click the download button to fetch the song using spot-dl/yt-dlp.
-- **Play:** Use the built-in player to listen to your downloaded songs.
-- **Manage playlists:** Add or remove songs from playlists.
+   ## Structure
 
-## Project Structure
-- `/src` - Java source code
-- `/resources` - Static resources (icons, images, etc.)
-- `/downloads` - Downloaded songs
+   - `java/` - Java UI/UX and backend (calls Python via JEP)
+      - `src/` - Java source code
+   - `python/` - Python backend for music download/processing
+      - `music_backend/` - Python modules
+   - `resources/` - App resources (icons, images, etc.)
+   - `downloads/` - Downloaded music files
 
+   ## Requirements
 
-## License
-[MIT](LICENSE)
+   - Java 17+
+   - Python 3.8+
+   - [JEP (Java Embedded Python)](https://github.com/ninia/jep)
+   - spotdl, yt-dlp, ffmpeg (Python packages/executables)
 
-## Acknowledgements
-- [spot-dl](https://github.com/spotDL/spotify-downloader)
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- [ffmpeg](https://ffmpeg.org/)
+   ## Setup
+
+   1. Install Java and Python.
+   2. Install JEP: `pip install jep`
+   3. Install spotdl, yt-dlp: `pip install spotdl yt-dlp`
+   4. Install ffmpeg (add to PATH).
+
+   ## Run
+
+   - Start the Java app (which will call Python backend via JEP).
+
+   ---
+
+   ## UML
+
+   See `UML(MusicPlayer).png` for architecture.
 
