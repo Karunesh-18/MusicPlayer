@@ -45,18 +45,8 @@ if ($LASTEXITCODE -eq 0) {
 }
 Write-Host ""
 
-# Test 5: Download Functionality Debug
-Write-Host "5. Testing Download Functionality with Debug..." -ForegroundColor Yellow
-python debug_download.py
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "OK Download debug test completed" -ForegroundColor Green
-} else {
-    Write-Host "FAIL Download debug test failed" -ForegroundColor Red
-}
-Write-Host ""
-
-# Test 6: Python Downloader Module
-Write-Host "6. Testing Python Downloader Module..." -ForegroundColor Yellow
+# Test 5: Python Downloader Module
+Write-Host "5. Testing Python Downloader Module..." -ForegroundColor Yellow
 python python/music_backend/downloader.py
 if ($LASTEXITCODE -eq 0) {
     Write-Host "OK Python downloader working" -ForegroundColor Green
@@ -65,8 +55,8 @@ if ($LASTEXITCODE -eq 0) {
 }
 Write-Host ""
 
-# Test 7: Java-Python Integration
-Write-Host "7. Testing Java-Python Integration..." -ForegroundColor Yellow
+# Test 6: Java-Python Integration
+Write-Host "6. Testing Java-Python Integration..." -ForegroundColor Yellow
 $JEP_LIB = "C:\Users\karun\AppData\Local\Programs\Python\Python313\Lib\site-packages\jep"
 java -cp "java/src;$JEP_JAR" "-Djava.library.path=$JEP_LIB" Main
 if ($LASTEXITCODE -eq 0) {
@@ -77,5 +67,3 @@ if ($LASTEXITCODE -eq 0) {
 Write-Host ""
 
 Write-Host "=== Test Complete ===" -ForegroundColor Green
-Write-Host ""
-Write-Host "If downloads are failing, check the logs directory for detailed debug information." -ForegroundColor Yellow

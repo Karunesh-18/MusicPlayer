@@ -22,78 +22,56 @@ def play_audio_file(file_path):
 
             # Method 1: Try os.startfile (simplest and most reliable)
             try:
-                print("DEBUG: Trying os.startfile to open with default program...")
                 os.startfile(file_path)
-                print("✓ Audio file opened with default program")
-                print("  The song should now be playing in your default audio player.")
                 return True
             except Exception as e:
-                print(f"DEBUG: os.startfile failed: {e}")
+                pass
 
             # Method 2: Try using start command without /wait
             try:
-                print("DEBUG: Trying start command...")
                 result = subprocess.run(['start', '', file_path], shell=True,
                                       capture_output=True, text=True, timeout=5)
                 if result.returncode == 0:
-                    print("✓ Audio file opened with start command")
                     return True
-                else:
-                    print(f"DEBUG: start command failed with return code: {result.returncode}")
-                    if result.stderr:
-                        print(f"DEBUG: stderr: {result.stderr}")
             except subprocess.TimeoutExpired:
-                print("✓ Start command launched (timeout is normal)")
                 return True
             except Exception as e:
-                print(f"DEBUG: start command failed: {e}")
+                pass
 
             # Method 3: Try VLC if installed
             try:
-                print("DEBUG: Trying VLC...")
                 subprocess.run(['vlc', '--intf', 'dummy', '--play-and-exit', file_path],
                              check=True, capture_output=True, timeout=3)
-                print("✓ Playing with VLC")
                 return True
             except FileNotFoundError:
-                print("DEBUG: VLC not found")
+                pass
             except subprocess.TimeoutExpired:
-                print("✓ VLC launched (timeout is normal)")
                 return True
             except Exception as e:
-                print(f"DEBUG: VLC failed: {e}")
+                pass
 
             # Method 4: Try Windows Media Player
             try:
-                print("DEBUG: Trying Windows Media Player...")
                 subprocess.run(['wmplayer', file_path], check=False, timeout=3)
-                print("✓ Launched Windows Media Player")
                 return True
             except FileNotFoundError:
-                print("DEBUG: Windows Media Player not found")
+                pass
             except subprocess.TimeoutExpired:
-                print("✓ Windows Media Player launched (timeout is normal)")
                 return True
             except Exception as e:
-                print(f"DEBUG: Windows Media Player failed: {e}")
+                pass
 
             # Method 5: Try PowerShell approach
             try:
-                print("DEBUG: Trying PowerShell approach...")
-                # Use a simpler PowerShell command that just opens the file
                 subprocess.run(['powershell', '-c', f'Invoke-Item "{file_path}"'],
                              check=True, timeout=5)
-                print("✓ Opened with PowerShell Invoke-Item")
                 return True
             except subprocess.TimeoutExpired:
-                print("✓ PowerShell command launched (timeout is normal)")
                 return True
             except Exception as e:
-                print(f"DEBUG: PowerShell approach failed: {e}")
+                pass
 
-            print('❌ Could not play audio with any method.')
-            print('   Please ensure you have a default audio player set up in Windows.')
-            print('   You can manually open the file from the downloads folder.')
+            print('Could not play audio. Please check your audio player setup.')
             return False
                     
         elif system == 'darwin':  # macOS
