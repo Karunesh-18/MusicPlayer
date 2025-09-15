@@ -4,72 +4,72 @@ import subprocess
 import platform
 import os
 import sys
+import threading
+
+# Global cache for the best working audio player method (performance optimization)
+_best_player_method = None
+_player_cache_lock = threading.Lock()
+
+def _try_windows_player_method(file_path, method_name):
+    """
+    Try a specific Windows audio player method.
+    Returns (success, method_name) tuple.
+    """
+    try:
+        if method_name == 'os.startfile':
+            os.startfile(file_path)
+            return True, method_name
+        elif method_name == 'start_command':
+            result = subprocess.run(['start', '', file_path], shell=True,
+                                  capture_output=True, text=True, timeout=2)  # Reduced timeout
+            return result.returncode == 0, method_name
+        elif method_name == 'powershell':
+            subprocess.run(['powershell', '-c', f'Invoke-Item "{file_path}"'],
+                         check=True, timeout=2)  # Reduced timeout
+            return True, method_name
+    except subprocess.TimeoutExpired:
+        # Timeout often means the command worked but is running in background
+        return True, method_name
+    except Exception:
+        return False, method_name
+
+    return False, method_name
 
 def play_audio_file(file_path):
     """
     Play an audio file using the system's default audio player.
+    Optimized with method caching for faster subsequent plays.
     """
+    global _best_player_method
+
     if not os.path.exists(file_path):
         print(f"Error: File not found: {file_path}")
         return False
 
     system = platform.system().lower()
-    print(f"Playing: {os.path.basename(file_path)}")
+    print(f"♪ Playing: {os.path.basename(file_path)}")
 
     try:
         if system == 'windows':
-            # Try different Windows audio players in order of preference
-
-            # Method 1: Try os.startfile (simplest and most reliable)
-            try:
-                os.startfile(file_path)
-                return True
-            except Exception as e:
-                pass
-
-            # Method 2: Try using start command without /wait
-            try:
-                result = subprocess.run(['start', '', file_path], shell=True,
-                                      capture_output=True, text=True, timeout=5)
-                if result.returncode == 0:
+            # If we have a cached working method, try it first
+            if _best_player_method:
+                success, method = _try_windows_player_method(file_path, _best_player_method)
+                if success:
                     return True
-            except subprocess.TimeoutExpired:
-                return True
-            except Exception as e:
-                pass
+                else:
+                    # Cached method failed, clear cache and try all methods
+                    _best_player_method = None
 
-            # Method 3: Try VLC if installed
-            try:
-                subprocess.run(['vlc', '--intf', 'dummy', '--play-and-exit', file_path],
-                             check=True, capture_output=True, timeout=3)
-                return True
-            except FileNotFoundError:
-                pass
-            except subprocess.TimeoutExpired:
-                return True
-            except Exception as e:
-                pass
+            # Try methods in order of reliability and speed
+            methods = ['os.startfile', 'start_command', 'powershell']
 
-            # Method 4: Try Windows Media Player
-            try:
-                subprocess.run(['wmplayer', file_path], check=False, timeout=3)
-                return True
-            except FileNotFoundError:
-                pass
-            except subprocess.TimeoutExpired:
-                return True
-            except Exception as e:
-                pass
-
-            # Method 5: Try PowerShell approach
-            try:
-                subprocess.run(['powershell', '-c', f'Invoke-Item "{file_path}"'],
-                             check=True, timeout=5)
-                return True
-            except subprocess.TimeoutExpired:
-                return True
-            except Exception as e:
-                pass
+            for method in methods:
+                success, method_name = _try_windows_player_method(file_path, method)
+                if success:
+                    # Cache the working method for next time
+                    with _player_cache_lock:
+                        _best_player_method = method_name
+                    return True
 
             print('Could not play audio. Please check your audio player setup.')
             return False
@@ -100,24 +100,57 @@ def play_audio_file(file_path):
 def find_latest_audio_file(directory="./downloads"):
     """
     Find the most recently downloaded audio file.
+    Optimized for better performance with larger directories.
     """
     if not os.path.exists(directory):
         return None
-        
-    audio_extensions = ['.mp3', '.wav', '.flac', '.m4a', '.ogg']
-    audio_files = []
-    
-    for file in os.listdir(directory):
-        if any(file.lower().endswith(ext) for ext in audio_extensions):
-            file_path = os.path.join(directory, file)
-            audio_files.append((file_path, os.path.getmtime(file_path)))
-    
-    if not audio_files:
+
+    try:
+        # Use os.scandir for better performance than os.listdir
+        audio_extensions = {'.mp3', '.wav', '.flac', '.m4a', '.ogg'}  # Set for O(1) lookup
+        latest_file = None
+        latest_time = 0
+
+        with os.scandir(directory) as entries:
+            for entry in entries:
+                if entry.is_file():
+                    # Check extension efficiently
+                    _, ext = os.path.splitext(entry.name.lower())
+                    if ext in audio_extensions:
+                        # Get modification time directly from DirEntry
+                        mtime = entry.stat().st_mtime
+                        if mtime > latest_time:
+                            latest_time = mtime
+                            latest_file = entry.path
+
+        return latest_file
+
+    except Exception as e:
+        print(f"Error finding audio files: {e}")
         return None
-    
-    # Return the most recently modified file
-    latest_file = max(audio_files, key=lambda x: x[1])
-    return latest_file[0]
+
+def get_audio_file_count(directory="./downloads"):
+    """
+    Get count of audio files in directory (for progress feedback).
+    """
+    if not os.path.exists(directory):
+        return 0
+
+    try:
+        audio_extensions = {'.mp3', '.wav', '.flac', '.m4a', '.ogg'}
+        count = 0
+
+        with os.scandir(directory) as entries:
+            for entry in entries:
+                if entry.is_file():
+                    _, ext = os.path.splitext(entry.name.lower())
+                    if ext in audio_extensions:
+                        count += 1
+
+        return count
+
+    except Exception:
+        return 0
 
 if __name__ == "__main__":
     # Test the player

@@ -1,5 +1,9 @@
-# requirements.txt
-spotdl
-yt-dlp
-jep
-python-dotenv
+# requirements.txt - Performance Optimized
+spotdl>=4.2.0
+yt-dlp>=2023.12.30
+jep>=4.2.0
+python-dotenv>=1.0.0
+
+# Performance optimization dependencies
+requests>=2.31.0
+urllib3>=2.0.0
