@@ -1,6 +1,5 @@
-package musicplayer;
 
-import jep.Jep;
+import jep.SharedInterpreter;
 import jep.JepException;
 
 public class Main {
@@ -10,11 +9,11 @@ public class Main {
         // Example: new MusicPlayerUI().start();
 
         // Example: Call Python backend via JEP
-        try (Jep jep = new Jep()) {
-            jep.eval("print('Hello from Python via JEP!')");
-            // Example: jep.runScript("../python/music_backend/main.py");
-        } catch (JepException e) {
-            e.printStackTrace();
-        }
+            try (jep.SharedInterpreter interp = new jep.SharedInterpreter()) {
+                interp.exec("print('Hello from Python via JEP!')");
+                // Example: interp.runScript("../python/music_backend/main.py");
+            } catch (JepException e) {
+                e.printStackTrace();
+            }
     }
 }
