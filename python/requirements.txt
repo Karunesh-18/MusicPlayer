@@ -2,3 +2,4 @@
 spotdl
 yt-dlp
 jep
+python-dotenv
