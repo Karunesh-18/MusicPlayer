@@ -13,12 +13,49 @@ logger = logging.getLogger(__name__)
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
+def get_python_executable():
+    """
+    Get the correct Python executable, handling JEP environment.
+    """
+    # Check if we're running in JEP (Java Embedded Python)
+    if 'java' in sys.executable.lower():
+        # We're running in JEP, need to find the actual Python executable
+        # Try common Python paths
+        python_paths = [
+            'python',
+            'python3',
+            r'C:\Users\karun\AppData\Local\Programs\Python\Python313\python.exe',
+            r'C:\Python313\python.exe',
+            r'C:\Python\python.exe'
+        ]
+
+        for python_path in python_paths:
+            try:
+                result = subprocess.run([python_path, '--version'],
+                                      capture_output=True, text=True, timeout=5)
+                if result.returncode == 0:
+                    logger.info(f"Found Python executable: {python_path}")
+                    return python_path
+            except:
+                continue
+
+        # If we can't find Python, try to use the one from PATH
+        logger.warning("Could not find Python executable, using 'python' from PATH")
+        return 'python'
+    else:
+        # Normal Python execution
+        return sys.executable
+
 def download_song(query: str, output_dir: str = "./downloads"):
     """
     Download a song using spotdl by searching for it.
     """
     logger.info(f"Starting download for query: '{query}'")
     logger.info(f"Output directory: {output_dir}")
+
+    # Get the correct Python executable
+    python_exe = get_python_executable()
+    logger.info(f"Using Python executable: {python_exe}")
 
     # Ensure output directory exists
     try:
@@ -32,7 +69,7 @@ def download_song(query: str, output_dir: str = "./downloads"):
     # Check if spotdl is available
     try:
         check_result = subprocess.run([
-            sys.executable, '-m', 'spotdl', '--version'
+            python_exe, '-m', 'spotdl', '--version'
         ], capture_output=True, text=True, timeout=10)
         logger.info(f"spotdl version check - Return code: {check_result.returncode}")
         logger.info(f"spotdl version output: {check_result.stdout}")
@@ -49,7 +86,7 @@ def download_song(query: str, output_dir: str = "./downloads"):
 
     # Prepare the command
     command = [
-        sys.executable, '-m', 'spotdl', 'download', query,
+        python_exe, '-m', 'spotdl', 'download', query,
         '--output', output_dir,
         '--format', 'mp3',
         '--print-errors'  # Use print-errors flag for more detailed output
