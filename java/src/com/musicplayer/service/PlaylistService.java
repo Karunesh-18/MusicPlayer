@@ -66,6 +66,10 @@ public class PlaylistService {
         return playlists.get(id);
     }
 
+    public Optional<Playlist> getPlaylistByIdOptional(String id) {
+        return Optional.ofNullable(playlists.get(id));
+    }
+
     public boolean updatePlaylist(String playlistId, User user, String newName, String newDescription) {
         Playlist playlist = playlists.get(playlistId);
         if (playlist == null || !playlist.canEdit(user)) {
@@ -384,5 +388,28 @@ public class PlaylistService {
         
         songs.forEach(playlist::removeSong);
         return true;
+    }
+
+    // Additional methods for compatibility
+
+    public boolean updatePlaylist(Playlist playlist) {
+        if (playlist == null || playlist.getId() == null) {
+            return false;
+        }
+        playlists.put(playlist.getId(), playlist);
+        return true;
+    }
+
+    public List<Playlist> getAllPublicPlaylists() {
+        return getPublicPlaylists();
+    }
+
+    public List<Playlist> getAllPlaylists() {
+        return new ArrayList<>(playlists.values());
+    }
+
+    public List<Playlist> getUserPlaylists(String userId) {
+        if (userId == null) return new ArrayList<>();
+        return userPlaylistIndex.getOrDefault(userId, new ArrayList<>());
     }
 }

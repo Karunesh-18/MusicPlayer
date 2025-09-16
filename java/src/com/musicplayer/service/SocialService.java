@@ -255,7 +255,7 @@ public class SocialService {
      * Share a playlist publicly.
      */
     public boolean sharePlaylist(String playlistId, String userId) {
-        Optional<Playlist> playlistOpt = playlistService.getPlaylistById(playlistId);
+        Optional<Playlist> playlistOpt = playlistService.getPlaylistByIdOptional(playlistId);
         if (playlistOpt.isEmpty()) {
             return false;
         }
@@ -291,7 +291,7 @@ public class SocialService {
      * Like a playlist.
      */
     public boolean likePlaylist(String playlistId, String userId) {
-        Optional<Playlist> playlistOpt = playlistService.getPlaylistById(playlistId);
+        Optional<Playlist> playlistOpt = playlistService.getPlaylistByIdOptional(playlistId);
         Optional<User> userOpt = userRepository.findById(userId);
         
         if (playlistOpt.isEmpty() || userOpt.isEmpty()) {
@@ -326,7 +326,7 @@ public class SocialService {
      * Unlike a playlist.
      */
     public boolean unlikePlaylist(String playlistId, String userId) {
-        Optional<Playlist> playlistOpt = playlistService.getPlaylistById(playlistId);
+        Optional<Playlist> playlistOpt = playlistService.getPlaylistByIdOptional(playlistId);
         Optional<User> userOpt = userRepository.findById(userId);
         
         if (playlistOpt.isEmpty() || userOpt.isEmpty()) {
@@ -356,7 +356,7 @@ public class SocialService {
      * Follow a playlist (get updates when it changes).
      */
     public boolean followPlaylist(String playlistId, String userId) {
-        Optional<Playlist> playlistOpt = playlistService.getPlaylistById(playlistId);
+        Optional<Playlist> playlistOpt = playlistService.getPlaylistByIdOptional(playlistId);
         if (playlistOpt.isEmpty()) {
             return false;
         }
@@ -384,7 +384,7 @@ public class SocialService {
      * Unfollow a playlist.
      */
     public boolean unfollowPlaylist(String playlistId, String userId) {
-        Optional<Playlist> playlistOpt = playlistService.getPlaylistById(playlistId);
+        Optional<Playlist> playlistOpt = playlistService.getPlaylistByIdOptional(playlistId);
         if (playlistOpt.isEmpty()) {
             return false;
         }

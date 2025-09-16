@@ -1,6 +1,7 @@
 package com.musicplayer.service;
 
 import com.musicplayer.model.*;
+import com.musicplayer.repository.SongRepository;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ public class MusicLibraryService {
     private Map<String, List<Song>> genreIndex;
     private Map<String, List<Song>> artistIndex;
     private Map<String, List<Song>> albumIndex;
+    private SongRepository songRepository;
 
     public MusicLibraryService() {
         this.songs = new HashMap<>();
@@ -23,6 +25,26 @@ public class MusicLibraryService {
         this.genreIndex = new HashMap<>();
         this.artistIndex = new HashMap<>();
         this.albumIndex = new HashMap<>();
+    }
+
+    public MusicLibraryService(SongRepository songRepository) {
+        this();
+        this.songRepository = songRepository;
+        // Load existing songs from repository
+        if (songRepository != null) {
+            loadSongsFromRepository();
+        }
+    }
+
+    private void loadSongsFromRepository() {
+        try {
+            List<Song> existingSongs = songRepository.findAll();
+            for (Song song : existingSongs) {
+                addSong(song);
+            }
+        } catch (Exception e) {
+            System.err.println("⚠️ Error loading songs from repository: " + e.getMessage());
+        }
     }
 
     // Song Management
@@ -279,12 +301,11 @@ public class MusicLibraryService {
 
     // Private Helper Methods
     private Artist getOrCreateArtist(String artistName) {
-        if (artistName == null || artistName.trim().isEmpty()) {
-            artistName = "Unknown Artist";
-        }
-        
-        String key = artistName.toLowerCase();
-        return artists.computeIfAbsent(key, k -> new Artist(artistName));
+        final String finalArtistName = (artistName == null || artistName.trim().isEmpty()) ?
+            "Unknown Artist" : artistName;
+
+        String key = finalArtistName.toLowerCase();
+        return artists.computeIfAbsent(key, k -> new Artist(finalArtistName));
     }
 
     private Album getOrCreateAlbum(String albumTitle, Artist artist) {
@@ -342,5 +363,27 @@ public class MusicLibraryService {
                 }
             }
         }
+    }
+
+    // Additional methods for UI compatibility
+    public List<Song> getMostPlayedSongs(int limit) {
+        return songs.values().stream()
+                .sorted((s1, s2) -> Integer.compare(s2.getPlayCount(), s1.getPlayCount()))
+                .limit(limit)
+                .collect(Collectors.toList());
+    }
+
+    public List<Song> getRecentlyAddedSongs(int limit) {
+        // Sort by song ID (assuming newer songs have higher IDs) or just return first N songs
+        return songs.values().stream()
+                .sorted((s1, s2) -> s2.getId().compareTo(s1.getId()))
+                .limit(limit)
+                .collect(Collectors.toList());
+    }
+
+    public List<Song> getDownloadedSongs() {
+        return songs.values().stream()
+                .filter(song -> song.getFilePath() != null && !song.getFilePath().isEmpty())
+                .collect(Collectors.toList());
     }
 }

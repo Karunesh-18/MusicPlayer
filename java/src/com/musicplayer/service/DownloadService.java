@@ -66,6 +66,19 @@ public class DownloadService {
         public long getDurationMs() {
             return endTime > startTime ? endTime - startTime : System.currentTimeMillis() - startTime;
         }
+
+        // Additional methods for UI compatibility
+        public boolean isCompleted() {
+            return status == DownloadStatus.COMPLETED;
+        }
+
+        public boolean isFailed() {
+            return status == DownloadStatus.FAILED;
+        }
+
+        public Song getSong() {
+            return resultSong;
+        }
     }
 
     // Download progress listener interface
@@ -85,12 +98,17 @@ public class DownloadService {
         this.listeners = new ArrayList<>();
         this.downloadDirectory = "./downloads";
         this.isProcessingQueue = false;
-        
+
         // Ensure download directory exists
         createDownloadDirectory();
-        
+
         // Start queue processor
         startQueueProcessor();
+    }
+
+    public DownloadService(PythonBridge pythonBridge, MusicLibraryService musicLibraryService) {
+        this(pythonBridge);
+        // Additional initialization with music library service if needed
     }
 
     // Public API Methods

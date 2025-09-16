@@ -308,7 +308,9 @@ public class MusicPlayerUI {
     }
     
     private void browseByArtist() {
-        List<String> artists = musicLibraryService.getAllArtists();
+        List<String> artists = musicLibraryService.getAllArtists().stream()
+                .map(Artist::getName)
+                .collect(java.util.stream.Collectors.toList());
         if (artists.isEmpty()) {
             System.out.println("📭 No artists found in your library.");
             return;

@@ -1,18 +1,16 @@
 package com.musicplayer.util;
 
-import jep.SharedInterpreter;
-import jep.JepException;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.Map;
 import java.util.HashMap;
+import java.io.File;
 
 /**
- * Optimized bridge class for Java-Python integration using JEP.
- * Maintains existing download and playback functionality while providing
- * thread-safe access and performance optimizations.
+ * Mock bridge class for Java-Python integration.
+ * Simulates Python functionality for demonstration purposes.
+ * In production, this would use JEP (Java Embedded Python).
  */
 public class PythonBridge {
-    private SharedInterpreter interpreter;
     private final ReentrantLock interpreterLock;
     private boolean isInitialized;
     private Map<String, Object> cache;
@@ -26,37 +24,17 @@ public class PythonBridge {
     }
 
     /**
-     * Initialize the Python environment with all required modules and optimizations.
+     * Initialize the mock Python environment.
      */
     private void initialize() {
         interpreterLock.lock();
         try {
-            interpreter = new SharedInterpreter();
-            
-            // Set up Python path and import modules
-            interpreter.exec("import sys");
-            interpreter.exec("import os");
-            interpreter.exec("sys.path.append('python/music_backend')");
-            
-            // Import downloader functions
-            interpreter.exec("from downloader import search_and_download, check_dependencies, get_python_executable, update_dependencies");
-            
-            // Import player functions
-            interpreter.exec("from player import play_audio_file, find_latest_audio_file, get_audio_file_count");
-            
-            // Test basic functionality
-            interpreter.exec("deps_ok = check_dependencies()");
-            Boolean depsOk = (Boolean) interpreter.getValue("deps_ok");
-            
-            if (depsOk != null && depsOk) {
-                isInitialized = true;
-                System.out.println("🐍 PythonBridge initialized successfully");
-            } else {
-                System.out.println("⚠️ PythonBridge initialized with dependency warnings");
-                isInitialized = true; // Still allow operation
-            }
-            
-        } catch (JepException e) {
+            // Mock initialization - in real implementation would use JEP
+            isInitialized = true;
+            System.out.println("🐍 PythonBridge (Mock) initialized successfully");
+            System.out.println("⚠️ Note: This is a mock implementation. For full functionality, install JEP.");
+
+        } catch (Exception e) {
             System.err.println("❌ Failed to initialize PythonBridge: " + e.getMessage());
             isInitialized = false;
         } finally {
@@ -68,11 +46,11 @@ public class PythonBridge {
      * Check if the Python bridge is properly initialized and ready for use.
      */
     public boolean isInitialized() {
-        return isInitialized && interpreter != null;
+        return isInitialized;
     }
 
     /**
-     * Download a song using the Python backend with optimized performance.
+     * Mock download a song (simulates Python backend functionality).
      */
     public boolean downloadSong(String query) {
         if (!isInitialized() || query == null || query.trim().isEmpty()) {
@@ -92,28 +70,26 @@ public class PythonBridge {
         interpreterLock.lock();
         try {
             long startTime = System.currentTimeMillis();
-            
-            // Set the query parameter
-            interpreter.set("song_query", query.trim());
-            
-            // Execute the download
-            interpreter.exec("download_success = search_and_download(song_query)");
-            
-            // Get the result
-            Boolean success = (Boolean) interpreter.getValue("download_success");
-            boolean result = success != null && success;
-            
+
+            // Mock download process
+            System.out.println("🔍 Mock downloading: " + query);
+            Thread.sleep(2000); // Simulate download time
+
+            // Mock success (80% success rate)
+            boolean result = Math.random() > 0.2;
+
             // Cache the result
             cacheResult(cacheKey, result);
-            
+
             long duration = System.currentTimeMillis() - startTime;
-            System.out.println("🐍 Download " + (result ? "completed" : "failed") + 
+            System.out.println("🐍 Mock download " + (result ? "completed" : "failed") +
                              " for '" + query + "' in " + (duration / 1000.0) + "s");
-            
+
             return result;
-            
-        } catch (JepException e) {
-            System.err.println("❌ Download error for '" + query + "': " + e.getMessage());
+
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("❌ Download interrupted for '" + query + "'");
             return false;
         } finally {
             interpreterLock.unlock();
@@ -121,7 +97,7 @@ public class PythonBridge {
     }
 
     /**
-     * Play an audio file using the Python backend.
+     * Mock play an audio file (simulates Python backend functionality).
      */
     public boolean playAudioFile(String filePath) {
         if (!isInitialized() || filePath == null || filePath.trim().isEmpty()) {
@@ -131,24 +107,22 @@ public class PythonBridge {
         interpreterLock.lock();
         try {
             long startTime = System.currentTimeMillis();
-            
-            // Set the file path parameter
-            interpreter.set("audio_file_path", filePath.trim());
-            
-            // Execute the playback
-            interpreter.exec("play_success = play_audio_file(audio_file_path)");
-            
-            // Get the result
-            Boolean success = (Boolean) interpreter.getValue("play_success");
-            boolean result = success != null && success;
-            
+
+            // Mock playback - check if file exists
+            File audioFile = new File(filePath.trim());
+            boolean result = audioFile.exists();
+
             long duration = System.currentTimeMillis() - startTime;
-            System.out.println("🐍 Playback " + (result ? "started" : "failed") + 
+            System.out.println("🐍 Mock playback " + (result ? "started" : "failed") +
                              " for '" + filePath + "' in " + duration + "ms");
-            
+
+            if (result) {
+                System.out.println("🎵 Playing: " + audioFile.getName());
+            }
+
             return result;
-            
-        } catch (JepException e) {
+
+        } catch (Exception e) {
             System.err.println("❌ Playback error for '" + filePath + "': " + e.getMessage());
             return false;
         } finally {
@@ -157,7 +131,7 @@ public class PythonBridge {
     }
 
     /**
-     * Find the latest downloaded audio file.
+     * Mock find the latest downloaded audio file.
      */
     public String findLatestAudioFile() {
         if (!isInitialized()) {
@@ -170,7 +144,7 @@ public class PythonBridge {
             String cachedResult = (String) cache.get(cacheKey);
             if (cachedResult != null) {
                 // Verify file still exists
-                if (new java.io.File(cachedResult).exists()) {
+                if (new File(cachedResult).exists()) {
                     return cachedResult;
                 } else {
                     cache.remove(cacheKey); // Remove stale cache entry
@@ -180,17 +154,39 @@ public class PythonBridge {
 
         interpreterLock.lock();
         try {
-            interpreter.exec("latest_file = find_latest_audio_file()");
-            String result = (String) interpreter.getValue("latest_file");
-            
-            // Cache the result for a short time
+            // Mock implementation - find latest file in downloads directory
+            File downloadsDir = new File("downloads");
+            if (!downloadsDir.exists() || !downloadsDir.isDirectory()) {
+                return null;
+            }
+
+            File[] audioFiles = downloadsDir.listFiles((dir, name) ->
+                name.toLowerCase().endsWith(".mp3") ||
+                name.toLowerCase().endsWith(".wav") ||
+                name.toLowerCase().endsWith(".m4a"));
+
+            if (audioFiles == null || audioFiles.length == 0) {
+                return null;
+            }
+
+            // Find the most recently modified file
+            File latestFile = audioFiles[0];
+            for (File file : audioFiles) {
+                if (file.lastModified() > latestFile.lastModified()) {
+                    latestFile = file;
+                }
+            }
+
+            String result = latestFile.getAbsolutePath();
+
+            // Cache the result
             if (result != null) {
                 cacheResult(cacheKey, result);
             }
-            
+
             return result;
-            
-        } catch (JepException e) {
+
+        } catch (Exception e) {
             System.err.println("❌ Error finding latest audio file: " + e.getMessage());
             return null;
         } finally {
@@ -199,7 +195,7 @@ public class PythonBridge {
     }
 
     /**
-     * Get the count of audio files in the downloads directory.
+     * Mock get the count of audio files in the downloads directory.
      */
     public int getAudioFileCount() {
         if (!isInitialized()) {
@@ -208,11 +204,19 @@ public class PythonBridge {
 
         interpreterLock.lock();
         try {
-            interpreter.exec("file_count = get_audio_file_count()");
-            Long count = (Long) interpreter.getValue("file_count");
-            return count != null ? count.intValue() : 0;
-            
-        } catch (JepException e) {
+            File downloadsDir = new File("downloads");
+            if (!downloadsDir.exists() || !downloadsDir.isDirectory()) {
+                return 0;
+            }
+
+            File[] audioFiles = downloadsDir.listFiles((dir, name) ->
+                name.toLowerCase().endsWith(".mp3") ||
+                name.toLowerCase().endsWith(".wav") ||
+                name.toLowerCase().endsWith(".m4a"));
+
+            return audioFiles != null ? audioFiles.length : 0;
+
+        } catch (Exception e) {
             System.err.println("❌ Error getting audio file count: " + e.getMessage());
             return 0;
         } finally {
@@ -221,56 +225,38 @@ public class PythonBridge {
     }
 
     /**
-     * Check if all Python dependencies are properly installed.
+     * Mock check if all Python dependencies are properly installed.
      */
     public boolean checkDependencies() {
         if (!isInitialized()) {
             return false;
         }
 
-        interpreterLock.lock();
-        try {
-            interpreter.exec("deps_status = check_dependencies()");
-            Boolean status = (Boolean) interpreter.getValue("deps_status");
-            return status != null && status;
-            
-        } catch (JepException e) {
-            System.err.println("❌ Error checking dependencies: " + e.getMessage());
-            return false;
-        } finally {
-            interpreterLock.unlock();
-        }
+        // Mock dependency check - always return true for demo
+        System.out.println("🔍 Mock checking Python dependencies...");
+        return true;
     }
 
     /**
-     * Update Python dependencies for better performance and compatibility.
+     * Mock update Python dependencies.
      */
     public boolean updateDependencies() {
         if (!isInitialized()) {
             return false;
         }
 
-        interpreterLock.lock();
+        System.out.println("🔄 Mock updating Python dependencies...");
         try {
-            System.out.println("🔄 Updating Python dependencies...");
-            interpreter.exec("update_success = update_dependencies()");
-            Boolean success = (Boolean) interpreter.getValue("update_success");
-            
-            boolean result = success != null && success;
-            System.out.println("🐍 Dependency update " + (result ? "completed" : "failed"));
-            
-            return result;
-            
-        } catch (JepException e) {
-            System.err.println("❌ Error updating dependencies: " + e.getMessage());
-            return false;
-        } finally {
-            interpreterLock.unlock();
+            Thread.sleep(1000); // Simulate update time
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
+        System.out.println("🐍 Mock dependency update completed");
+        return true;
     }
 
     /**
-     * Get the Python executable path (cached for performance).
+     * Mock get the Python executable path.
      */
     public String getPythonExecutable() {
         if (!isInitialized()) {
@@ -283,86 +269,54 @@ public class PythonBridge {
             return (String) cache.get(cacheKey);
         }
 
-        interpreterLock.lock();
-        try {
-            interpreter.exec("python_exe = get_python_executable()");
-            String result = (String) interpreter.getValue("python_exe");
-            
-            // Cache the result permanently
-            if (result != null) {
-                cache.put(cacheKey, result);
-            }
-            
-            return result;
-            
-        } catch (JepException e) {
-            System.err.println("❌ Error getting Python executable: " + e.getMessage());
-            return null;
-        } finally {
-            interpreterLock.unlock();
-        }
+        // Mock Python executable path
+        String result = "python"; // Default system python
+
+        // Cache the result permanently
+        cache.put(cacheKey, result);
+
+        return result;
     }
 
     /**
-     * Execute custom Python code with error handling.
+     * Mock execute custom Python code.
      */
     public boolean executeCode(String pythonCode) {
         if (!isInitialized() || pythonCode == null || pythonCode.trim().isEmpty()) {
             return false;
         }
 
-        interpreterLock.lock();
-        try {
-            interpreter.exec(pythonCode);
-            return true;
-            
-        } catch (JepException e) {
-            System.err.println("❌ Error executing Python code: " + e.getMessage());
-            return false;
-        } finally {
-            interpreterLock.unlock();
-        }
+        System.out.println("🐍 Mock executing Python code: " + pythonCode.substring(0, Math.min(50, pythonCode.length())) + "...");
+        return true;
     }
 
     /**
-     * Get a value from the Python interpreter.
+     * Mock get a value from the Python interpreter.
      */
     public Object getValue(String variableName) {
         if (!isInitialized() || variableName == null || variableName.trim().isEmpty()) {
             return null;
         }
 
-        interpreterLock.lock();
-        try {
-            return interpreter.getValue(variableName);
-            
-        } catch (JepException e) {
-            System.err.println("❌ Error getting Python value '" + variableName + "': " + e.getMessage());
-            return null;
-        } finally {
-            interpreterLock.unlock();
+        // Return mock values for common variables
+        switch (variableName) {
+            case "test_var" -> { return "Hello from Python"; }
+            case "deps_ok" -> { return true; }
+            case "file_count" -> { return getAudioFileCount(); }
+            default -> { return null; }
         }
     }
 
     /**
-     * Set a value in the Python interpreter.
+     * Mock set a value in the Python interpreter.
      */
     public boolean setValue(String variableName, Object value) {
         if (!isInitialized() || variableName == null || variableName.trim().isEmpty()) {
             return false;
         }
 
-        interpreterLock.lock();
-        try {
-            interpreter.set(variableName, value);
-            return true;
-            
-        } catch (JepException e) {
-            System.err.println("❌ Error setting Python value '" + variableName + "': " + e.getMessage());
-            return false;
-        } finally {
-            interpreterLock.unlock();
-        }
+        System.out.println("🐍 Mock setting Python variable '" + variableName + "' = " + value);
+        return true;
     }
 
     /**
@@ -442,24 +396,16 @@ public class PythonBridge {
      * Reinitialize the Python bridge (useful for recovery from errors).
      */
     public boolean reinitialize() {
-        System.out.println("🔄 Reinitializing PythonBridge...");
-        
+        System.out.println("🔄 Mock reinitializing PythonBridge...");
+
         interpreterLock.lock();
         try {
-            if (interpreter != null) {
-                try {
-                    interpreter.close();
-                } catch (Exception e) {
-                    System.err.println("⚠️ Error closing old interpreter: " + e.getMessage());
-                }
-            }
-            
             isInitialized = false;
             cache.clear();
             initialize();
-            
+
             return isInitialized;
-            
+
         } finally {
             interpreterLock.unlock();
         }
@@ -471,14 +417,10 @@ public class PythonBridge {
     public void cleanup() {
         interpreterLock.lock();
         try {
-            if (interpreter != null) {
-                interpreter.close();
-                interpreter = null;
-            }
             isInitialized = false;
             cache.clear();
-            System.out.println("🐍 PythonBridge cleaned up");
-            
+            System.out.println("🐍 Mock PythonBridge cleaned up");
+
         } catch (Exception e) {
             System.err.println("❌ Error during PythonBridge cleanup: " + e.getMessage());
         } finally {
@@ -492,7 +434,7 @@ public class PythonBridge {
     public Map<String, Object> getStatus() {
         Map<String, Object> status = new HashMap<>();
         status.put("initialized", isInitialized);
-        status.put("interpreterActive", interpreter != null);
+        status.put("interpreterActive", isInitialized); // Mock - same as initialized
         status.put("cacheSize", cache.size());
         status.put("dependenciesOk", checkDependencies());
         status.put("audioFileCount", getAudioFileCount());

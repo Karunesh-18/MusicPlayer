@@ -208,28 +208,32 @@ public class MusicPlayerApplication {
             public void onDownloadStarted(DownloadService.DownloadTask task) {
                 System.out.println("⏳ Download started: " + task.getQuery());
             }
-            
+
             @Override
-            public void onDownloadProgress(DownloadService.DownloadTask task, int progress) {
+            public void onDownloadProgress(DownloadService.DownloadTask task, double progress) {
                 // Progress updates handled by UI
             }
-            
+
             @Override
-            public void onDownloadCompleted(DownloadService.DownloadTask task) {
-                Song song = task.getSong();
+            public void onDownloadCompleted(DownloadService.DownloadTask task, Song song) {
                 if (song != null) {
                     System.out.println("✅ Download completed: " + song.getDisplayName());
-                    
+
                     // Add to user's recently played if there's a current user
                     if (playbackController.getCurrentUser() != null) {
                         playbackController.getCurrentUser().addToRecentlyPlayed(song);
                     }
                 }
             }
-            
+
             @Override
             public void onDownloadFailed(DownloadService.DownloadTask task, String error) {
                 System.err.println("❌ Download failed: " + task.getQuery() + " - " + error);
+            }
+
+            @Override
+            public void onDownloadCancelled(DownloadService.DownloadTask task) {
+                System.out.println("🚫 Download cancelled: " + task.getQuery());
             }
         });
         

@@ -348,6 +348,29 @@ public class User {
     public boolean isVerified() { return isVerified; }
     public void setVerified(boolean verified) { isVerified = verified; }
 
+    // Additional Getters and Setters for missing methods
+    public int getFollowerCount() {
+        return followers.size();
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return createdDate;
+    }
+
+    public SubscriptionType getSubscriptionType() {
+        return subscription;
+    }
+
+    public void setSubscriptionType(SubscriptionType subscriptionType) {
+        this.subscription = subscriptionType;
+    }
+
+    public List<String> getLikedPlaylists() {
+        // Return playlist IDs that this user has liked
+        // For now, return empty list - this would be implemented with a separate liked playlists collection
+        return new ArrayList<>();
+    }
+
     // Object Methods
     @Override
     public boolean equals(Object o) {
@@ -364,7 +387,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User{id='%s', username='%s', email='%s', subscription=%s, playlists=%d, likedSongs=%d, following=%d, followers=%d}", 
+        return String.format("User{id='%s', username='%s', email='%s', subscription=%s, playlists=%d, likedSongs=%d, following=%d, followers=%d}",
                            id, username, email, subscription, playlists.size(), likedSongs.size(), following.size(), followers.size());
     }
 }

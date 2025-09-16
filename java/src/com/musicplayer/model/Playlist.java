@@ -301,6 +301,47 @@ public class Playlist {
     public PlaylistType getType() { return type; }
     public void setType(PlaylistType type) { this.type = type; }
 
+    // Additional methods for social features
+    public String getOwnerId() {
+        return owner != null ? owner.getId() : null;
+    }
+
+    public void addLike() {
+        // Increment like count in metadata
+        int currentLikes = getLikeCount();
+        metadata.put("likeCount", currentLikes + 1);
+    }
+
+    public void removeLike() {
+        // Decrement like count in metadata
+        int currentLikes = getLikeCount();
+        metadata.put("likeCount", Math.max(0, currentLikes - 1));
+    }
+
+    public int getLikeCount() {
+        Object likes = metadata.get("likeCount");
+        return likes instanceof Integer ? (Integer) likes : 0;
+    }
+
+    public void addFollower(String userId) {
+        // This would typically be handled by the service layer
+        // For now, just update follower count in metadata
+        int currentFollowers = getFollowerCount();
+        metadata.put("followerCount", currentFollowers + 1);
+    }
+
+    public void removeFollower(String userId) {
+        // This would typically be handled by the service layer
+        // For now, just update follower count in metadata
+        int currentFollowers = getFollowerCount();
+        metadata.put("followerCount", Math.max(0, currentFollowers - 1));
+    }
+
+    public int getFollowerCount() {
+        Object followers = metadata.get("followerCount");
+        return followers instanceof Integer ? (Integer) followers : this.followers.size();
+    }
+
     // Object Methods
     @Override
     public boolean equals(Object o) {

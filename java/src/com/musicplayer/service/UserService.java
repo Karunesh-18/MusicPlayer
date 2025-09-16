@@ -1,6 +1,7 @@
 package com.musicplayer.service;
 
 import com.musicplayer.model.*;
+import com.musicplayer.repository.UserRepository;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ public class UserService {
     private Map<String, User> usernameIndex;
     private Map<String, User> emailIndex;
     private User currentUser;
+    private UserRepository userRepository;
 
     public UserService() {
         this.users = new HashMap<>();
@@ -20,7 +22,37 @@ public class UserService {
         this.emailIndex = new HashMap<>();
     }
 
+    public UserService(UserRepository userRepository) {
+        this();
+        this.userRepository = userRepository;
+        // Load existing users from repository
+        if (userRepository != null) {
+            loadUsersFromRepository();
+        }
+    }
+
+    private void loadUsersFromRepository() {
+        try {
+            List<User> existingUsers = userRepository.findAll();
+            for (User user : existingUsers) {
+                users.put(user.getId(), user);
+                usernameIndex.put(user.getUsername().toLowerCase(), user);
+                emailIndex.put(user.getEmail().toLowerCase(), user);
+            }
+        } catch (Exception e) {
+            System.err.println("⚠️ Error loading users from repository: " + e.getMessage());
+        }
+    }
+
     // User Registration and Authentication
+    public User registerUser(String username, String email, String displayName, String password) {
+        User user = registerUser(username, email, password);
+        if (displayName != null && !displayName.trim().isEmpty()) {
+            user.setDisplayName(displayName.trim());
+        }
+        return user;
+    }
+
     public User registerUser(String username, String email, String password) {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username cannot be null or empty");
@@ -51,9 +83,9 @@ public class UserService {
         return user;
     }
 
-    public User authenticateUser(String usernameOrEmail, String password) {
+    public Optional<User> authenticateUser(String usernameOrEmail, String password) {
         if (usernameOrEmail == null || password == null) {
-            return null;
+            return Optional.empty();
         }
 
         User user = getUserByUsername(usernameOrEmail);
@@ -64,10 +96,10 @@ public class UserService {
         if (user != null && user.authenticate(password)) {
             user.updateLastLogin();
             this.currentUser = user;
-            return user;
+            return Optional.of(user);
         }
 
-        return null;
+        return Optional.empty();
     }
 
     public void logoutUser() {
