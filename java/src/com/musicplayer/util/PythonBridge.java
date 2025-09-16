@@ -1,38 +1,61 @@
 package com.musicplayer.util;
 
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.Map;
-import java.util.HashMap;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Mock bridge class for Java-Python integration.
- * Simulates Python functionality for demonstration purposes.
- * In production, this would use JEP (Java Embedded Python).
+ * Real bridge class for Java-Python integration.
+ * Executes actual Python backend for music downloading and playback.
+ * Uses ProcessBuilder to call Python scripts directly.
  */
 public class PythonBridge {
     private final ReentrantLock interpreterLock;
     private boolean isInitialized;
     private Map<String, Object> cache;
     private static final int CACHE_SIZE_LIMIT = 100;
+    private String pythonExecutable;
+    private String pythonBackendPath;
 
     public PythonBridge() {
         this.interpreterLock = new ReentrantLock();
         this.isInitialized = false;
         this.cache = new HashMap<>();
+        this.pythonExecutable = "python";
+        this.pythonBackendPath = "../../python/music_backend";
         initialize();
     }
 
     /**
-     * Initialize the mock Python environment.
+     * Initialize the real Python environment.
      */
     private void initialize() {
         interpreterLock.lock();
         try {
-            // Mock initialization - in real implementation would use JEP
-            isInitialized = true;
-            System.out.println("🐍 PythonBridge (Mock) initialized successfully");
-            System.out.println("⚠️ Note: This is a mock implementation. For full functionality, install JEP.");
+            // Test if Python is available
+            ProcessBuilder pb = new ProcessBuilder(pythonExecutable, "--version");
+            Process process = pb.start();
+            int exitCode = process.waitFor();
+
+            if (exitCode == 0) {
+                // Test if our Python backend is accessible
+                File backendDir = new File(pythonBackendPath);
+                if (backendDir.exists() && backendDir.isDirectory()) {
+                    isInitialized = true;
+                    System.out.println("🐍 PythonBridge initialized successfully");
+                    System.out.println("✅ Real Python backend connected");
+                } else {
+                    System.err.println("❌ Python backend directory not found: " + pythonBackendPath);
+                    isInitialized = false;
+                }
+            } else {
+                System.err.println("❌ Python executable not found or not working");
+                isInitialized = false;
+            }
 
         } catch (Exception e) {
             System.err.println("❌ Failed to initialize PythonBridge: " + e.getMessage());
@@ -50,7 +73,7 @@ public class PythonBridge {
     }
 
     /**
-     * Mock download a song (simulates Python backend functionality).
+     * Download a song using the real Python backend.
      */
     public boolean downloadSong(String query) {
         if (!isInitialized() || query == null || query.trim().isEmpty()) {
@@ -70,26 +93,57 @@ public class PythonBridge {
         interpreterLock.lock();
         try {
             long startTime = System.currentTimeMillis();
+            System.out.println("🔍 Downloading: " + query);
 
-            // Mock download process
-            System.out.println("🔍 Mock downloading: " + query);
-            Thread.sleep(2000); // Simulate download time
+            // Execute Python download script with proper encoding
+            ProcessBuilder pb = new ProcessBuilder(
+                pythonExecutable, "-c",
+                "import sys; import os; " +
+                "os.environ['PYTHONIOENCODING'] = 'utf-8'; " +
+                "sys.path.append('" + pythonBackendPath + "'); " +
+                "from downloader import search_and_download; " +
+                "result = search_and_download('" + query.replace("'", "\\'") + "'); " +
+                "print('DOWNLOAD_RESULT:' + str(result))"
+            );
 
-            // Mock success (80% success rate)
-            boolean result = Math.random() > 0.2;
+            pb.directory(new File("."));
+            pb.redirectErrorStream(true);
+            pb.environment().put("PYTHONIOENCODING", "utf-8");
+            Process process = pb.start();
+
+            // Read output
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            boolean result = false;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                if (line.contains("DOWNLOAD_RESULT:True")) {
+                    result = true;
+                } else if (line.contains("DOWNLOAD_RESULT:False")) {
+                    result = false;
+                }
+            }
+
+            // Wait for process to complete with timeout
+            boolean finished = process.waitFor(120, TimeUnit.SECONDS);
+            if (!finished) {
+                process.destroyForcibly();
+                System.err.println("❌ Download timeout for: " + query);
+                return false;
+            }
 
             // Cache the result
             cacheResult(cacheKey, result);
 
             long duration = System.currentTimeMillis() - startTime;
-            System.out.println("🐍 Mock download " + (result ? "completed" : "failed") +
+            System.out.println("🐍 Download " + (result ? "completed" : "failed") +
                              " for '" + query + "' in " + (duration / 1000.0) + "s");
 
             return result;
 
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.err.println("❌ Download interrupted for '" + query + "'");
+        } catch (Exception e) {
+            System.err.println("❌ Download error for '" + query + "': " + e.getMessage());
             return false;
         } finally {
             interpreterLock.unlock();
@@ -97,7 +151,7 @@ public class PythonBridge {
     }
 
     /**
-     * Mock play an audio file (simulates Python backend functionality).
+     * Play an audio file using the real Python backend.
      */
     public boolean playAudioFile(String filePath) {
         if (!isInitialized() || filePath == null || filePath.trim().isEmpty()) {
@@ -108,17 +162,56 @@ public class PythonBridge {
         try {
             long startTime = System.currentTimeMillis();
 
-            // Mock playback - check if file exists
+            // Check if file exists first
             File audioFile = new File(filePath.trim());
-            boolean result = audioFile.exists();
+            if (!audioFile.exists()) {
+                System.err.println("❌ Audio file not found: " + filePath);
+                return false;
+            }
+
+            System.out.println("🎵 Playing: " + audioFile.getName());
+
+            // Execute Python playback script with proper encoding
+            ProcessBuilder pb = new ProcessBuilder(
+                pythonExecutable, "-c",
+                "import sys; import os; " +
+                "os.environ['PYTHONIOENCODING'] = 'utf-8'; " +
+                "sys.path.append('" + pythonBackendPath + "'); " +
+                "from player import play_audio_file; " +
+                "result = play_audio_file('" + filePath.replace("\\", "\\\\").replace("'", "\\'") + "'); " +
+                "print('PLAYBACK_RESULT:' + str(result))"
+            );
+
+            pb.directory(new File("."));
+            pb.redirectErrorStream(true);
+            pb.environment().put("PYTHONIOENCODING", "utf-8");
+            Process process = pb.start();
+
+            // Read output
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            boolean result = false;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                if (line.contains("PLAYBACK_RESULT:True")) {
+                    result = true;
+                } else if (line.contains("PLAYBACK_RESULT:False")) {
+                    result = false;
+                }
+            }
+
+            // Wait for process to complete with timeout
+            boolean finished = process.waitFor(10, TimeUnit.SECONDS);
+            if (!finished) {
+                process.destroyForcibly();
+                System.err.println("❌ Playback timeout for: " + filePath);
+                return false;
+            }
 
             long duration = System.currentTimeMillis() - startTime;
-            System.out.println("🐍 Mock playback " + (result ? "started" : "failed") +
-                             " for '" + filePath + "' in " + duration + "ms");
-
-            if (result) {
-                System.out.println("🎵 Playing: " + audioFile.getName());
-            }
+            System.out.println("🐍 Playback " + (result ? "started" : "failed") +
+                             " for '" + audioFile.getName() + "' in " + duration + "ms");
 
             return result;
 
@@ -131,20 +224,22 @@ public class PythonBridge {
     }
 
     /**
-     * Mock find the latest downloaded audio file.
+     * Find the latest downloaded audio file using the real Python backend.
      */
     public String findLatestAudioFile() {
         if (!isInitialized()) {
             return null;
         }
 
-        // Check cache first
+        // Check cache first (but don't cache too long for latest file)
         String cacheKey = "latest_audio_file";
         if (cache.containsKey(cacheKey)) {
             String cachedResult = (String) cache.get(cacheKey);
             if (cachedResult != null) {
-                // Verify file still exists
-                if (new File(cachedResult).exists()) {
+                // Verify file still exists and is recent (within 30 seconds)
+                File cachedFile = new File(cachedResult);
+                if (cachedFile.exists() &&
+                    (System.currentTimeMillis() - cachedFile.lastModified()) < 30000) {
                     return cachedResult;
                 } else {
                     cache.remove(cacheKey); // Remove stale cache entry
@@ -154,33 +249,40 @@ public class PythonBridge {
 
         interpreterLock.lock();
         try {
-            // Mock implementation - find latest file in downloads directory
-            File downloadsDir = new File("downloads");
-            if (!downloadsDir.exists() || !downloadsDir.isDirectory()) {
-                return null;
-            }
+            // Execute Python script to find latest audio file
+            ProcessBuilder pb = new ProcessBuilder(
+                pythonExecutable, "-c",
+                "import sys; sys.path.append('" + pythonBackendPath + "'); " +
+                "from player import find_latest_audio_file; " +
+                "result = find_latest_audio_file(); " +
+                "print('LATEST_FILE:' + str(result) if result else 'LATEST_FILE:None')"
+            );
 
-            File[] audioFiles = downloadsDir.listFiles((dir, name) ->
-                name.toLowerCase().endsWith(".mp3") ||
-                name.toLowerCase().endsWith(".wav") ||
-                name.toLowerCase().endsWith(".m4a"));
+            pb.directory(new File("."));
+            pb.redirectErrorStream(true);
+            Process process = pb.start();
 
-            if (audioFiles == null || audioFiles.length == 0) {
-                return null;
-            }
+            // Read output
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            String result = null;
 
-            // Find the most recently modified file
-            File latestFile = audioFiles[0];
-            for (File file : audioFiles) {
-                if (file.lastModified() > latestFile.lastModified()) {
-                    latestFile = file;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("LATEST_FILE:") && !line.contains("None")) {
+                    result = line.substring("LATEST_FILE:".length());
                 }
             }
 
-            String result = latestFile.getAbsolutePath();
+            // Wait for process to complete
+            boolean finished = process.waitFor(5, TimeUnit.SECONDS);
+            if (!finished) {
+                process.destroyForcibly();
+                System.err.println("❌ Timeout finding latest audio file");
+                return null;
+            }
 
-            // Cache the result
-            if (result != null) {
+            // Cache the result if valid
+            if (result != null && new File(result).exists()) {
                 cacheResult(cacheKey, result);
             }
 
