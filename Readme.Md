@@ -9,7 +9,7 @@ A Java-based Music Player application with a modern frontend, supporting song do
 - **Playlist Management:** Create, edit, and manage playlists.
 - **Metadata Fetching:** Automatically fetch song metadata and album art.
 
-## Technologies Used AndPrerequisites
+## Technologies Used And Prerequisites
 - [JDK 21](https://adoptium.net/)
 - [spot-dl](https://github.com/spotDL/spotify-downloader) installed and in PATH
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) installed and in PATH
