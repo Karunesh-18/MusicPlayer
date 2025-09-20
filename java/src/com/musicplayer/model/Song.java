@@ -3,10 +3,7 @@ package com.musicplayer.model;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-/**
- * Represents a music track with comprehensive metadata and functionality.
- * Core model class following OOP principles with proper encapsulation.
- */
+// Basic song info - keeps track of music files and their details
 public class Song {
     private String id;
     private String title;
@@ -23,9 +20,9 @@ public class Song {
     private boolean isLiked;
     private boolean isDownloaded;
     private long fileSize;
-    private String quality; // e.g., "192k", "320k"
+    private String quality; // like "192k" or "320k"
 
-    // Constructors
+    // Default setup
     public Song() {
         this.id = generateId();
         this.addedDate = LocalDateTime.now();
@@ -47,7 +44,7 @@ public class Song {
         this.durationSeconds = durationSeconds;
     }
 
-    // Business Logic Methods
+    // What happens when someone plays this song
     public void play() {
         this.playCount++;
     }
@@ -64,7 +61,7 @@ public class Song {
         if (rating >= 0.0 && rating <= 5.0) {
             this.rating = rating;
         } else {
-            throw new IllegalArgumentException("Rating must be between 0.0 and 5.0");
+            throw new IllegalArgumentException("Rating needs to be between 0 and 5");
         }
     }
 
@@ -82,7 +79,7 @@ public class Song {
         return playCount > 10 || rating > 4.0;
     }
 
-    // Utility Methods
+    // Helper stuff
     private String generateId() {
         return "song_" + System.currentTimeMillis() + "_" + (int)(Math.random() * 1000);
     }
@@ -91,7 +88,7 @@ public class Song {
         return (title + " " + artist + " " + album + " " + genre).toLowerCase();
     }
 
-    // Getters and Setters
+    // All the getter/setter methods
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -142,7 +139,7 @@ public class Song {
     public String getQuality() { return quality; }
     public void setQuality(String quality) { this.quality = quality; }
 
-    // Object Methods
+    // Standard object methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -158,7 +155,7 @@ public class Song {
 
     @Override
     public String toString() {
-        return String.format("Song{id='%s', title='%s', artist='%s', album='%s', duration='%s', playCount=%d, liked=%s}", 
+        return String.format("Song{id='%s', title='%s', artist='%s', album='%s', duration='%s', playCount=%d, liked=%s}",
                            id, title, artist, album, getFormattedDuration(), playCount, isLiked);
     }
 }

@@ -1,20 +1,15 @@
 package com.musicplayer.service;
 
 import com.musicplayer.model.*;
-import com.musicplayer.repository.UserRepository;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Service class for comprehensive user management including authentication,
- * profile management, social features, and user analytics.
- */
+// Handles user accounts, login, registration etc
 public class UserService {
     private Map<String, User> users;
     private Map<String, User> usernameIndex;
     private Map<String, User> emailIndex;
     private User currentUser;
-    private UserRepository userRepository;
 
     public UserService() {
         this.users = new HashMap<>();
@@ -22,29 +17,7 @@ public class UserService {
         this.emailIndex = new HashMap<>();
     }
 
-    public UserService(UserRepository userRepository) {
-        this();
-        this.userRepository = userRepository;
-        // Load existing users from repository
-        if (userRepository != null) {
-            loadUsersFromRepository();
-        }
-    }
-
-    private void loadUsersFromRepository() {
-        try {
-            List<User> existingUsers = userRepository.findAll();
-            for (User user : existingUsers) {
-                users.put(user.getId(), user);
-                usernameIndex.put(user.getUsername().toLowerCase(), user);
-                emailIndex.put(user.getEmail().toLowerCase(), user);
-            }
-        } catch (Exception e) {
-            System.err.println("⚠️ Error loading users from repository: " + e.getMessage());
-        }
-    }
-
-    // User Registration and Authentication
+    // Creating accounts and logging in
     public User registerUser(String username, String email, String displayName, String password) {
         User user = registerUser(username, email, password);
         if (displayName != null && !displayName.trim().isEmpty()) {
@@ -55,21 +28,21 @@ public class UserService {
 
     public User registerUser(String username, String email, String password) {
         if (username == null || username.trim().isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be null or empty");
+            throw new IllegalArgumentException("You need to provide a username");
         }
         if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Email cannot be null or empty");
+            throw new IllegalArgumentException("Email is required");
         }
         if (password == null || password.length() < 6) {
-            throw new IllegalArgumentException("Password must be at least 6 characters long");
+            throw new IllegalArgumentException("Password needs to be at least 6 characters");
         }
 
-        // Check if username or email already exists
+        // Make sure username and email aren't taken
         if (usernameIndex.containsKey(username.toLowerCase())) {
-            throw new IllegalArgumentException("Username already exists");
+            throw new IllegalArgumentException("That username is already taken");
         }
         if (emailIndex.containsKey(email.toLowerCase())) {
-            throw new IllegalArgumentException("Email already registered");
+            throw new IllegalArgumentException("Someone already used that email");
         }
 
         User user = new User(username.trim(), email.trim());
@@ -171,7 +144,7 @@ public class UserService {
         }
 
         if (newPassword == null || newPassword.length() < 6) {
-            throw new IllegalArgumentException("New password must be at least 6 characters long");
+            throw new IllegalArgumentException("New password should be at least 6 characters");
         }
 
         user.setPassword(newPassword);

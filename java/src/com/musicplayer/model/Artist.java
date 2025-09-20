@@ -3,10 +3,7 @@ package com.musicplayer.model;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/**
- * Represents a music artist with comprehensive information and relationships.
- * Supports artist following, song collections, and social features.
- */
+// Artist info - musicians, bands, etc.
 public class Artist {
     private String id;
     private String name;
@@ -17,11 +14,11 @@ public class Artist {
     private LocalDateTime createdDate;
     private List<Song> songs;
     private List<Album> albums;
-    private Map<String, Object> socialLinks; // Spotify, YouTube, etc.
+    private Map<String, Object> socialLinks; // like Spotify, YouTube links
     private boolean isVerified;
-    private double popularity; // 0.0 to 100.0
+    private double popularity; // from 0 to 100
 
-    // Constructors
+    // Basic setup
     public Artist() {
         this.id = generateId();
         this.createdDate = LocalDateTime.now();

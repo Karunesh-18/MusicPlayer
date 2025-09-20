@@ -3,10 +3,7 @@ package com.musicplayer.model;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/**
- * Represents a music album with track listing and metadata.
- * Supports album-based operations and statistics.
- */
+// Album info - collection of songs by an artist
 public class Album {
     private String id;
     private String title;
@@ -17,12 +14,12 @@ public class Album {
     private LocalDateTime addedDate;
     private String genre;
     private String recordLabel;
-    private AlbumType type; // ALBUM, EP, SINGLE, COMPILATION
+    private AlbumType type; // full album, EP, single etc
     private int totalDurationSeconds;
     private boolean isLiked;
     private double rating;
 
-    // Enum for album types
+    // Different types of releases
     public enum AlbumType {
         ALBUM, EP, SINGLE, COMPILATION, MIXTAPE
     }

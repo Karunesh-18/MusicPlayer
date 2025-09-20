@@ -46,8 +46,6 @@ public class PythonBridge {
                 File backendDir = new File(pythonBackendPath);
                 if (backendDir.exists() && backendDir.isDirectory()) {
                     isInitialized = true;
-                    System.out.println("🐍 PythonBridge initialized successfully");
-                    System.out.println("✅ Real Python backend connected");
                 } else {
                     System.err.println("❌ Python backend directory not found: " + pythonBackendPath);
                     isInitialized = false;
@@ -521,7 +519,6 @@ public class PythonBridge {
         try {
             isInitialized = false;
             cache.clear();
-            System.out.println("🐍 Mock PythonBridge cleaned up");
 
         } catch (Exception e) {
             System.err.println("❌ Error during PythonBridge cleanup: " + e.getMessage());

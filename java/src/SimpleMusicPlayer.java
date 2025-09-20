@@ -6,11 +6,7 @@ import java.io.File;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-/**
- * Simplified Spotify-like Music Player
- * Clean Java OOP implementation with real Python backend
- * Optimized for performance and efficiency
- */
+
 public class SimpleMusicPlayer {
     // Core components
     private static final Scanner scanner = new Scanner(System.in);
@@ -28,17 +24,16 @@ public class SimpleMusicPlayer {
     private static boolean running = true;
     
     public static void main(String[] args) {
-        System.out.println("🎵 SIMPLIFIED SPOTIFY MUSIC PLAYER");
-        System.out.println("==================================");
-        System.out.println("🏗️ Java OOP | 🐍 Real Python Backend | 🎶 High Performance");
+        System.out.println("MUSIC PLAYER");
+        System.out.println("============");
         System.out.println();
-        
+
         try {
             initializeApplication();
             authenticateUser();
             runMainLoop();
         } catch (Exception e) {
-            System.err.println("❌ Application error: " + e.getMessage());
+            System.err.println("Application error: " + e.getMessage());
             e.printStackTrace();
         } finally {
             cleanup();
@@ -49,7 +44,6 @@ public class SimpleMusicPlayer {
      * Initialize application components
      */
     private static void initializeApplication() {
-        System.out.println("🔧 Initializing application...");
         
         // Initialize Python bridge
         pythonBridge = new PythonBridge();
@@ -62,10 +56,6 @@ public class SimpleMusicPlayer {
         
         // Load existing music
         loadExistingMusic();
-        
-        System.out.println("✅ Application initialized successfully");
-        System.out.println("🐍 Python backend: Connected");
-        System.out.println("📚 Library: " + musicLibrary.size() + " songs loaded");
     }
     
     /**
@@ -107,34 +97,37 @@ public class SimpleMusicPlayer {
         return song;
     }
     
-    /**
-     * Handle user authentication
-     */
+    // Figure out who's using the app
     private static void authenticateUser() {
-        System.out.println("\n👤 USER AUTHENTICATION");
-        System.out.println("======================");
-        
+        System.out.println("\nWho are you?");
+        System.out.println("============");
+
         while (currentUser == null) {
-            System.out.println("1. 🔑 Login");
-            System.out.println("2. 📝 Register");
-            System.out.println("3. 👤 Guest Mode");
-            System.out.print("Choose option: ");
-            
+            System.out.println("1. I have an account (Login)");
+            System.out.println("2. I'm new here (Register)");
+            System.out.println("3. Just let me try it (Guest)");
+            System.out.print("Pick one: ");
+
             try {
                 int choice = Integer.parseInt(scanner.nextLine().trim());
-                
-                switch (choice) {
-                    case 1 -> currentUser = handleLogin();
-                    case 2 -> currentUser = handleRegistration();
-                    case 3 -> currentUser = createGuestUser();
-                    default -> System.out.println("❌ Invalid option. Please try again.");
+
+                if (choice == 1) {
+                    currentUser = handleLogin();
+                } else if (choice == 2) {
+                    currentUser = handleRegistration();
+                } else if (choice == 3) {
+                    currentUser = createGuestUser();
+                } else {
+                    System.out.println("That's not one of the options. Try 1, 2, or 3.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("❌ Please enter a valid number.");
+                System.out.println("Just type a number please.");
+            } catch (Exception e) {
+                System.out.println("Something went wrong. Let's try again.");
             }
         }
-        
-        System.out.println("✅ Welcome, " + currentUser.getDisplayName() + "!");
+
+        System.out.println("Hey there, " + currentUser.getDisplayName() + "!");
     }
     
     private static User handleLogin() {
@@ -159,7 +152,7 @@ public class SimpleMusicPlayer {
         try {
             return userService.registerUser(username, email, displayName, password);
         } catch (Exception e) {
-            System.out.println("❌ Registration failed: " + e.getMessage());
+            System.out.println(" Registration failed: " + e.getMessage());
             return null;
         }
     }
@@ -171,7 +164,7 @@ public class SimpleMusicPlayer {
                                           "Guest User", 
                                           "guest123");
         } catch (Exception e) {
-            System.out.println("❌ Failed to create guest user: " + e.getMessage());
+            System.out.println("Failed to create guest user: " + e.getMessage());
             return null;
         }
     }
@@ -187,76 +180,64 @@ public class SimpleMusicPlayer {
         }
     }
     
-    /**
-     * Display main menu
-     */
+    // Show the main menu options to user
     private static void showMainMenu() {
-        System.out.println("\n" + "=".repeat(50));
-        showStatus();
-        System.out.println("=".repeat(50));
-        
-        System.out.println("\n🎵 MAIN MENU");
-        System.out.println("============");
-        System.out.println("1. 🔍 Search & Download Music");
-        System.out.println("2. 📚 Browse Library (" + musicLibrary.size() + " songs)");
-        System.out.println("3. ▶️ Playback Controls");
-        System.out.println("4. 📋 Queue Management (" + playQueue.size() + " songs)");
-        System.out.println("5. 🎯 Quick Play Tamil Songs");
-        System.out.println("6. 👤 User Profile");
-        System.out.println("7. 📊 Statistics");
-        System.out.println("0. ❌ Exit");
+        System.out.println("\nWhat would you like to do?");
+        System.out.println("=========================");
+        System.out.println("1. Find and download music");
+
+        String libraryText = musicLibrary.size() == 1 ? "song" : "songs";
+        System.out.println("2. Browse your library (" + musicLibrary.size() + " " + libraryText + ")");
+
+        System.out.println("3. Control playback");
+
+        String queueText = playQueue.size() == 1 ? "song" : "songs";
+        System.out.println("4. Manage queue (" + playQueue.size() + " " + queueText + ")");
+
+        System.out.println("5. Quick Tamil hits");
+        System.out.println("6. Your profile");
+        System.out.println("7. View stats");
+        System.out.println("0. Quit");
         System.out.println();
     }
-    
-    /**
-     * Show current status
-     */
-    private static void showStatus() {
-        System.out.println("👤 User: " + currentUser.getDisplayName());
-        
-        if (currentlyPlaying != null) {
-            System.out.println("🎶 Now Playing: " + currentlyPlaying.getDisplayName());
-        }
-        
-        System.out.println("📚 Library: " + musicLibrary.size() + " songs");
-        System.out.println("🐍 Backend: ✅ Connected");
-    }
-    
-    /**
-     * Handle menu choices
-     */
+
+    // Process user's menu selection
     private static void handleMenuChoice(int choice) {
-        switch (choice) {
-            case 1 -> handleSearchAndDownload();
-            case 2 -> handleBrowseLibrary();
-            case 3 -> handlePlaybackControls();
-            case 4 -> handleQueueManagement();
-            case 5 -> handleQuickPlayTamil();
-            case 6 -> handleUserProfile();
-            case 7 -> handleStatistics();
-            case 0 -> {
-                System.out.println("👋 Goodbye!");
-                running = false;
-            }
-            default -> System.out.println("❌ Invalid option. Please try again.");
+        if (choice == 1) {
+            handleSearchAndDownload();
+        } else if (choice == 2) {
+            handleBrowseLibrary();
+        } else if (choice == 3) {
+            handlePlaybackControls();
+        } else if (choice == 4) {
+            handleQueueManagement();
+        } else if (choice == 5) {
+            handleQuickPlayTamil();
+        } else if (choice == 6) {
+            handleUserProfile();
+        } else if (choice == 7) {
+            handleStatistics();
+        } else if (choice == 0) {
+            System.out.println("Goodbye!");
+            running = false;
+        } else {
+            System.out.println("That's not a valid option. Try again.");
         }
     }
     
-    /**
-     * Handle search and download
-     */
+    // Let user search for and download music
     private static void handleSearchAndDownload() {
-        System.out.println("\n🔍 SEARCH & DOWNLOAD");
-        System.out.println("====================");
-        
-        System.out.print("Enter song name or artist: ");
+        System.out.println("\nSearch and Download Music");
+        System.out.println("========================");
+
+        System.out.print("What song would you like? ");
         String query = scanner.nextLine().trim();
-        
+
         if (query.isEmpty()) {
-            System.out.println("❌ Please enter a search term");
+            System.out.println("You need to tell me what to search for!");
             return;
         }
-        
+
         downloadAndPlay(query);
     }
     
@@ -264,22 +245,22 @@ public class SimpleMusicPlayer {
      * Download and play a song
      */
     private static void downloadAndPlay(String query) {
-        System.out.println("⬇️ Downloading: " + query);
-        System.out.println("⏳ Please wait (30-90 seconds)...");
+        System.out.println("Getting " + query + " for you...");
+        System.out.println("This might take a minute or two, hang tight!");
         
         CompletableFuture.supplyAsync(() -> {
             try {
                 // Download the song
                 boolean downloadSuccess = pythonBridge.downloadSong(query);
                 if (!downloadSuccess) {
-                    System.out.println("❌ Download failed");
+                    System.out.println("Hmm, couldn't get that one. Try something else?");
                     return false;
                 }
-                
-                // Find the downloaded file
+
+                // Look for the file we just downloaded
                 String latestFile = pythonBridge.findLatestAudioFile();
                 if (latestFile == null) {
-                    System.out.println("❌ Downloaded file not found");
+                    System.out.println("Strange... downloaded but can't find the file");
                     return false;
                 }
                 
@@ -297,28 +278,28 @@ public class SimpleMusicPlayer {
                         song.play(); // Increment play count
                         currentUser.addToRecentlyPlayed(song);
                         
-                        System.out.println("✅ Now playing: " + song.getDisplayName());
-                        
-                        // Add to queue for continuous play
+                        System.out.println("Playing: " + song.getDisplayName());
+
+                        // Add it to our queue too
                         playQueue.offer(song);
-                        
+
                         return true;
                     } else {
-                        System.out.println("❌ Playback failed");
+                        System.out.println("Got the file but can't play it right now");
                         return false;
                     }
                 } else {
-                    System.out.println("❌ Failed to create song object");
+                    System.out.println("Something went wrong processing the download");
                     return false;
                 }
                 
             } catch (Exception e) {
-                System.err.println("❌ Error: " + e.getMessage());
+                System.err.println("Error: " + e.getMessage());
                 return false;
             }
         }).thenAccept(success -> {
             if (success) {
-                System.out.println("🎉 Download and playback completed successfully!");
+                System.out.println("Download and playback completed successfully!");
             }
         });
     }
@@ -327,22 +308,23 @@ public class SimpleMusicPlayer {
      * Handle library browsing
      */
     private static void handleBrowseLibrary() {
-        System.out.println("\n📚 MUSIC LIBRARY");
+        System.out.println("\n MUSIC LIBRARY");
         System.out.println("================");
 
         if (musicLibrary.isEmpty()) {
-            System.out.println("📭 Your library is empty. Download some music first!");
+            System.out.println("You don't have any music yet. Try downloading something first!");
             return;
         }
 
-        System.out.println("🎵 Your Music Library:");
+        System.out.println("Here's what you've got:");
         for (int i = 0; i < musicLibrary.size(); i++) {
             Song song = musicLibrary.get(i);
-            System.out.printf("%2d. %s (♪ %d plays)\n",
-                i + 1, song.getDisplayName(), song.getPlayCount());
+            String playText = song.getPlayCount() == 1 ? "play" : "plays";
+            System.out.printf("%2d. %s (%d %s)\n",
+                i + 1, song.getDisplayName(), song.getPlayCount(), playText);
         }
 
-        System.out.print("\nEnter song number to play (0 to go back): ");
+        System.out.print("\nWhich one? (0 to go back): ");
         int choice = getIntInput("");
 
         if (choice > 0 && choice <= musicLibrary.size()) {
@@ -361,12 +343,12 @@ public class SimpleMusicPlayer {
                 currentlyPlaying = song;
                 song.play();
                 currentUser.addToRecentlyPlayed(song);
-                System.out.println("▶️ Now playing: " + song.getDisplayName());
+                System.out.println("Playing: " + song.getDisplayName());
             } else {
-                System.out.println("❌ Failed to play song");
+                System.out.println("Can't play that one right now");
             }
         } else {
-            System.out.println("❌ Song file not found");
+            System.out.println("Hmm, can't find that file anymore");
         }
     }
 
@@ -374,19 +356,19 @@ public class SimpleMusicPlayer {
      * Handle playback controls
      */
     private static void handlePlaybackControls() {
-        System.out.println("\n▶️ PLAYBACK CONTROLS");
+        System.out.println("\n PLAYBACK CONTROLS");
         System.out.println("====================");
 
         if (currentlyPlaying != null) {
-            System.out.println("🎶 Currently Playing: " + currentlyPlaying.getDisplayName());
+            System.out.println(" Currently Playing: " + currentlyPlaying.getDisplayName());
         } else {
-            System.out.println("⏸️ Nothing is currently playing");
+            System.out.println(" Nothing is currently playing");
         }
 
-        System.out.println("\n1. ⏭️ Play Next in Queue");
-        System.out.println("2. 🔀 Shuffle Library");
-        System.out.println("3. 🎲 Play Random Song");
-        System.out.println("0. 🔙 Back");
+        System.out.println("\n1.  Play Next in Queue");
+        System.out.println("2.  Shuffle Library");
+        System.out.println("3.  Play Random Song");
+        System.out.println("0.  Back");
 
         int choice = getIntInput("Choose option: ");
 
@@ -402,17 +384,17 @@ public class SimpleMusicPlayer {
             Song nextSong = playQueue.poll();
             playSong(nextSong);
         } else {
-            System.out.println("📭 Queue is empty");
+            System.out.println(" Queue is empty");
         }
     }
 
     private static void shuffleAndPlay() {
         if (!musicLibrary.isEmpty()) {
             Collections.shuffle(musicLibrary);
-            System.out.println("🔀 Library shuffled!");
+            System.out.println(" Library shuffled!");
             playSong(musicLibrary.get(0));
         } else {
-            System.out.println("📭 Library is empty");
+            System.out.println(" Library is empty");
         }
     }
 
@@ -422,7 +404,7 @@ public class SimpleMusicPlayer {
             Song randomSong = musicLibrary.get(random.nextInt(musicLibrary.size()));
             playSong(randomSong);
         } else {
-            System.out.println("📭 Library is empty");
+            System.out.println(" Library is empty");
         }
     }
 
@@ -430,23 +412,23 @@ public class SimpleMusicPlayer {
      * Handle queue management
      */
     private static void handleQueueManagement() {
-        System.out.println("\n📋 QUEUE MANAGEMENT");
+        System.out.println("\n QUEUE MANAGEMENT");
         System.out.println("===================");
 
         if (playQueue.isEmpty()) {
-            System.out.println("📭 Queue is empty");
+            System.out.println(" Queue is empty");
             return;
         }
 
-        System.out.println("📋 Current Queue:");
+        System.out.println(" Current Queue:");
         List<Song> queueList = new ArrayList<>(playQueue);
         for (int i = 0; i < queueList.size(); i++) {
             System.out.println((i + 1) + ". " + queueList.get(i).getDisplayName());
         }
 
-        System.out.println("\n1. ▶️ Play Next");
-        System.out.println("2. 🗑️ Clear Queue");
-        System.out.println("0. 🔙 Back");
+        System.out.println("\n1.  Play Next");
+        System.out.println("2.  Clear Queue");
+        System.out.println("0.  Back");
 
         int choice = getIntInput("Choose option: ");
 
@@ -454,7 +436,7 @@ public class SimpleMusicPlayer {
             case 1 -> playNextInQueue();
             case 2 -> {
                 playQueue.clear();
-                System.out.println("🗑️ Queue cleared");
+                System.out.println(" Queue cleared");
             }
         }
     }
@@ -463,7 +445,7 @@ public class SimpleMusicPlayer {
      * Handle quick play Tamil songs
      */
     private static void handleQuickPlayTamil() {
-        System.out.println("\n🎯 QUICK PLAY TAMIL SONGS");
+        System.out.println("\n QUICK PLAY TAMIL SONGS");
         System.out.println("=========================");
 
         String[] tamilSongs = {
@@ -472,12 +454,12 @@ public class SimpleMusicPlayer {
             "Danga Maari", "Kaavaalaa", "Arabic Kuthu", "Beast Mode"
         };
 
-        System.out.println("🎵 Popular Tamil Songs:");
+        System.out.println("Some popular Tamil hits:");
         for (int i = 0; i < tamilSongs.length; i++) {
             System.out.println((i + 1) + ". " + tamilSongs[i]);
         }
-        System.out.println((tamilSongs.length + 1) + ". Custom Search");
-        System.out.println("0. 🔙 Back");
+        System.out.println((tamilSongs.length + 1) + ". Search for something else");
+        System.out.println("0. Never mind, go back");
 
         int choice = getIntInput("Choose song: ");
 
@@ -496,7 +478,7 @@ public class SimpleMusicPlayer {
      * Handle user profile
      */
     private static void handleUserProfile() {
-        System.out.println("\n👤 USER PROFILE");
+        System.out.println("\n USER PROFILE");
         System.out.println("===============");
         System.out.println("Username: " + currentUser.getUsername());
         System.out.println("Display Name: " + currentUser.getDisplayName());
@@ -504,10 +486,10 @@ public class SimpleMusicPlayer {
         System.out.println("Recently Played: " + currentUser.getRecentlyPlayed().size() + " songs");
 
         if (!currentUser.getRecentlyPlayed().isEmpty()) {
-            System.out.println("\n🕒 RECENTLY PLAYED:");
+            System.out.println("\nRECENTLY PLAYED:");
             List<Song> recent = currentUser.getRecentlyPlayed();
             for (int i = 0; i < Math.min(5, recent.size()); i++) {
-                System.out.println("  ♪ " + recent.get(i).getDisplayName());
+                System.out.println("  " + recent.get(i).getDisplayName());
             }
         }
     }
@@ -516,16 +498,16 @@ public class SimpleMusicPlayer {
      * Handle statistics
      */
     private static void handleStatistics() {
-        System.out.println("\n📊 MUSIC STATISTICS");
+        System.out.println("\n MUSIC STATISTICS");
         System.out.println("===================");
-        System.out.println("👤 User: " + currentUser.getDisplayName());
-        System.out.println("🎵 Total Songs: " + musicLibrary.size());
-        System.out.println("📥 Session Downloads: " + sessionDownloads.size());
-        System.out.println("🕒 Recently Played: " + currentUser.getRecentlyPlayed().size());
-        System.out.println("📋 Current Queue: " + playQueue.size() + " songs");
+        System.out.println(" User: " + currentUser.getDisplayName());
+        System.out.println(" Total Songs: " + musicLibrary.size());
+        System.out.println(" Session Downloads: " + sessionDownloads.size());
+        System.out.println(" Recently Played: " + currentUser.getRecentlyPlayed().size());
+        System.out.println(" Current Queue: " + playQueue.size() + " songs");
 
         if (currentlyPlaying != null) {
-            System.out.println("🎶 Now Playing: " + currentlyPlaying.getDisplayName());
+            System.out.println(" Now Playing: " + currentlyPlaying.getDisplayName());
         }
 
         // Show most played songs
@@ -533,7 +515,7 @@ public class SimpleMusicPlayer {
         sortedSongs.sort((s1, s2) -> Integer.compare(s2.getPlayCount(), s1.getPlayCount()));
 
         if (!sortedSongs.isEmpty()) {
-            System.out.println("\n🔥 TOP 5 MOST PLAYED:");
+            System.out.println("\n TOP 5 MOST PLAYED:");
             for (int i = 0; i < Math.min(5, sortedSongs.size()); i++) {
                 Song song = sortedSongs.get(i);
                 System.out.println((i + 1) + ". " + song.getDisplayName() +
@@ -542,16 +524,20 @@ public class SimpleMusicPlayer {
         }
     }
 
-    /**
-     * Get integer input with validation
-     */
+    // Get a number from user with some basic validation
     private static int getIntInput(String prompt) {
         while (true) {
             try {
                 System.out.print(prompt);
-                return Integer.parseInt(scanner.nextLine().trim());
+                String input = scanner.nextLine().trim();
+                return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("❌ Please enter a valid number.");
+                System.out.println("That's not a number. Try again.");
+            } catch (Exception e) {
+                // Handle case where scanner runs out of input
+                System.out.println("\nInput error occurred. Exiting...");
+                running = false;
+                return 0;
             }
         }
     }
@@ -560,9 +546,9 @@ public class SimpleMusicPlayer {
      * Cleanup resources
      */
     private static void cleanup() {
-        System.out.println("\n🧹 CLEANING UP SESSION...");
+        System.out.println("\nTidying up...");
 
-        // Smart cleanup - delete unused downloads
+        // Remove any downloads that weren't played
         if (!sessionDownloads.isEmpty()) {
             int deletedCount = 0;
             for (String filePath : sessionDownloads) {
@@ -575,24 +561,21 @@ public class SimpleMusicPlayer {
                     if (!wasPlayed) {
                         if (file.delete()) {
                             deletedCount++;
-                            System.out.println("🗑️ Deleted unused download: " + file.getName());
                         }
                     }
                 }
             }
 
             if (deletedCount > 0) {
-                System.out.println("✅ Cleaned up " + deletedCount + " unused downloads");
-            } else {
-                System.out.println("✅ No cleanup needed - all downloads were used");
+                System.out.println("Removed " + deletedCount + " temporary files");
             }
         }
 
-        // Cleanup Python bridge
+        // Close Python connection
         if (pythonBridge != null) {
             pythonBridge.cleanup();
         }
 
-        System.out.println("👋 Thank you for using Simplified Spotify Music Player!");
+        System.out.println("Thanks for listening!");
     }
 }

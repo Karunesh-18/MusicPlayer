@@ -3,10 +3,7 @@ package com.musicplayer.model;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/**
- * Represents a user-created playlist with comprehensive management features.
- * Supports collaborative playlists, sharing, and advanced playlist operations.
- */
+// User playlists - custom song collections
 public class Playlist {
     private String id;
     private String name;
@@ -23,7 +20,7 @@ public class Playlist {
     private Map<String, Object> metadata;
     private PlaylistType type;
 
-    // Enum for playlist types
+    // Different kinds of playlists
     public enum PlaylistType {
         USER_CREATED, LIKED_SONGS, RECENTLY_PLAYED, TOP_TRACKS, DISCOVER_WEEKLY, RADIO
     }

@@ -4,10 +4,7 @@ import com.musicplayer.model.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Service class for comprehensive playlist management including creation,
- * modification, sharing, and collaborative features.
- */
+// Handles playlists - creating, editing, sharing them
 public class PlaylistService {
     private Map<String, Playlist> playlists;
     private Map<String, List<Playlist>> userPlaylistIndex;
@@ -19,10 +16,10 @@ public class PlaylistService {
         this.publicPlaylistIndex = new HashMap<>();
     }
 
-    // Playlist CRUD Operations
+    // Basic playlist operations
     public Playlist createPlaylist(String name, User owner) {
         if (name == null || name.trim().isEmpty() || owner == null) {
-            throw new IllegalArgumentException("Playlist name and owner cannot be null or empty");
+            throw new IllegalArgumentException("Need a name and owner for the playlist");
         }
         
         Playlist playlist = new Playlist(name.trim(), owner);
@@ -51,14 +48,14 @@ public class PlaylistService {
             return false;
         }
         
-        // Don't allow deletion of system playlists
+        // Can't delete system playlists
         if (playlist.getType() != Playlist.PlaylistType.USER_CREATED) {
             return false;
         }
-        
-        // Remove from indices
+
+        // Clean up the indices
         removeFromIndices(playlist);
-        
+
         return playlists.remove(playlistId) != null;
     }
 
@@ -87,13 +84,13 @@ public class PlaylistService {
         return true;
     }
 
-    // Song Management in Playlists
+    // Adding songs to playlists
     public boolean addSongToPlaylist(String playlistId, Song song, User user) {
         Playlist playlist = playlists.get(playlistId);
         if (playlist == null || song == null || !playlist.canEdit(user)) {
             return false;
         }
-        
+
         playlist.addSong(song);
         return true;
     }

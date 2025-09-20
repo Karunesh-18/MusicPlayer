@@ -1,5 +1,3 @@
-
-
 # Music Player
 
 A cross-platform desktop music player using Java for UI/UX and backend, and Python for music downloading and processing (spotdl, yt-dlp, ffmpeg).
@@ -60,4 +58,12 @@ These concepts help organize code, promote reusability, and make the system easi
 
 ## UML
 See `UML(MusicPlayer).png` for architecture.
+
+## References
+
+- [JEP (Java Embedded Python)](https://github.com/ninia/jep)
+- [spot-dl](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [ffmpeg](https://ffmpeg.org/)
+
 

@@ -3,10 +3,7 @@ package com.musicplayer.model;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/**
- * Represents a user account with comprehensive profile and preference management.
- * Supports social features, subscription management, and personalization.
- */
+// User account stuff - handles login, preferences, playlists etc
 public class User {
     private String id;
     private String username;
@@ -28,12 +25,12 @@ public class User {
     private boolean isActive;
     private boolean isVerified;
 
-    // Enum for subscription types
+    // Different account types
     public enum SubscriptionType {
         FREE, PREMIUM, FAMILY, STUDENT
     }
 
-    // Inner class for user preferences
+    // User settings and preferences
     public static class UserPreferences {
         private boolean shuffleEnabled;
         private RepeatMode repeatMode;

@@ -2,17 +2,14 @@ package com.musicplayer.service;
 
 import com.musicplayer.model.*;
 import com.musicplayer.util.PythonBridge;
-import java.util.*;
-import java.util.concurrent.*;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.*;
+import java.util.concurrent.*;
 
-/**
- * Service class for managing music downloads with queue management,
- * progress tracking, and integration with Python backend.
- */
+// Handles downloading music - queuing, progress tracking etc
 public class DownloadService {
     private final PythonBridge pythonBridge;
     private final ExecutorService downloadExecutor;
@@ -22,7 +19,7 @@ public class DownloadService {
     private final String downloadDirectory;
     private boolean isProcessingQueue;
 
-    // Download task representation
+    // Info about each download
     public static class DownloadTask {
         private String id;
         private String query;
@@ -111,35 +108,35 @@ public class DownloadService {
         // Additional initialization with music library service if needed
     }
 
-    // Public API Methods
+    // Main download methods
     public DownloadTask queueDownload(String query, User user) {
         if (query == null || query.trim().isEmpty()) {
-            throw new IllegalArgumentException("Download query cannot be null or empty");
+            throw new IllegalArgumentException("Need something to search for");
         }
         if (user == null) {
-            throw new IllegalArgumentException("User cannot be null");
+            throw new IllegalArgumentException("Need a user for this download");
         }
 
-        // Check if song already exists
+        // See if we already have this song
         Song existingSong = findExistingSong(query);
         if (existingSong != null && existingSong.isDownloaded()) {
-            // Create a completed task for existing song
+            // Just return a completed task since we have it already
             DownloadTask task = new DownloadTask(query, user);
             task.setStatus(DownloadTask.DownloadStatus.COMPLETED);
             task.setProgress(100.0);
             task.setResultSong(existingSong);
             task.setEndTime(System.currentTimeMillis());
-            
-            // Notify listeners
+
+            // Let everyone know it's done
             notifyDownloadCompleted(task, existingSong);
             return task;
         }
 
         DownloadTask task = new DownloadTask(query, user);
         downloadQueue.offer(task);
-        
-        System.out.println("🎵 Queued download: " + query + " (Queue size: " + downloadQueue.size() + ")");
-        
+
+        System.out.println("Queued download: " + query + " (Queue size: " + downloadQueue.size() + ")");
+
         processQueue();
         return task;
     }

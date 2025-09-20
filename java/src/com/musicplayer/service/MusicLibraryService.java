@@ -1,15 +1,11 @@
 package com.musicplayer.service;
 
 import com.musicplayer.model.*;
-import com.musicplayer.repository.SongRepository;
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Service class for managing the music library with comprehensive search,
- * organization, and recommendation features.
- */
+// Manages the music collection - searching, organizing, etc
 public class MusicLibraryService {
     private Map<String, Song> songs;
     private Map<String, Artist> artists;
@@ -17,7 +13,6 @@ public class MusicLibraryService {
     private Map<String, List<Song>> genreIndex;
     private Map<String, List<Song>> artistIndex;
     private Map<String, List<Song>> albumIndex;
-    private SongRepository songRepository;
 
     public MusicLibraryService() {
         this.songs = new HashMap<>();
@@ -28,29 +23,7 @@ public class MusicLibraryService {
         this.albumIndex = new HashMap<>();
     }
 
-    public MusicLibraryService(SongRepository songRepository) {
-        this();
-        this.songRepository = songRepository;
-        // Load existing songs from repository
-        if (songRepository != null) {
-            loadSongsFromRepository();
-        }
-    }
-
-    private void loadSongsFromRepository() {
-        try {
-            List<Song> existingSongs = songRepository.findAll();
-            for (Song song : existingSongs) {
-                addSong(song);
-            }
-        } catch (Exception e) {
-            System.err.println("⚠️ Error loading songs from repository: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Load songs from a directory (for existing music)
-     */
+    // Load music files from a folder
     public int loadFromDirectory(String directoryPath) {
         File directory = new File(directoryPath);
         if (!directory.exists() || !directory.isDirectory()) {
@@ -136,17 +109,17 @@ public class MusicLibraryService {
             .collect(Collectors.toList());
     }
 
-    // Song Management
+    // Adding songs to the library
     public void addSong(Song song) {
         if (song != null && song.getId() != null) {
             songs.put(song.getId(), song);
             updateIndices(song);
-            
-            // Create or update artist
+
+            // Make sure we have the artist info too
             Artist artist = getOrCreateArtist(song.getArtist());
             artist.addSong(song);
-            
-            // Handle album if specified
+
+            // And album info if we have it
             if (song.getAlbum() != null && !song.getAlbum().isEmpty()) {
                 Album album = getOrCreateAlbum(song.getAlbum(), artist);
                 album.addTrack(song);
@@ -175,23 +148,23 @@ public class MusicLibraryService {
         return new ArrayList<>(songs.values());
     }
 
-    // Search Functionality
+    // Finding songs by search terms
     public List<Song> searchSongs(String query) {
         if (query == null || query.trim().isEmpty()) {
             return new ArrayList<>();
         }
-        
+
         String lowerQuery = query.toLowerCase();
         return songs.values().stream()
                    .filter(song -> song.getSearchableText().contains(lowerQuery))
                    .sorted((s1, s2) -> {
-                       // Prioritize exact matches in title
+                       // Put exact title matches first
                        boolean s1TitleMatch = s1.getTitle().toLowerCase().contains(lowerQuery);
                        boolean s2TitleMatch = s2.getTitle().toLowerCase().contains(lowerQuery);
                        if (s1TitleMatch && !s2TitleMatch) return -1;
                        if (!s1TitleMatch && s2TitleMatch) return 1;
-                       
-                       // Then by popularity (play count)
+
+                       // Then sort by how popular they are
                        return Integer.compare(s2.getPlayCount(), s1.getPlayCount());
                    })
                    .collect(Collectors.toList());
