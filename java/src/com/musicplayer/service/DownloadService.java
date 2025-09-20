@@ -197,7 +197,7 @@ public class DownloadService {
             }
         }
         
-        System.out.println("🎵 Queued playlist download: " + playlist.getName() + 
+        System.out.println("Queued playlist download: " + playlist.getName() +
                           " (" + tasks.size() + " songs)");
         return tasks;
     }
@@ -213,7 +213,7 @@ public class DownloadService {
             }
         }
         
-        System.out.println("🎵 Queued album download: " + album.getDisplayName() + 
+        System.out.println("Queued album download: " + album.getDisplayName() +
                           " (" + tasks.size() + " songs)");
         return tasks;
     }
@@ -235,10 +235,10 @@ public class DownloadService {
             Path downloadPath = Paths.get(downloadDirectory);
             if (!Files.exists(downloadPath)) {
                 Files.createDirectories(downloadPath);
-                System.out.println("📁 Created download directory: " + downloadDirectory);
+                System.out.println("Created download directory: " + downloadDirectory);
             }
         } catch (Exception e) {
-            System.err.println("❌ Failed to create download directory: " + e.getMessage());
+            System.err.println("Failed to create download directory: " + e.getMessage());
         }
     }
 
@@ -252,7 +252,7 @@ public class DownloadService {
                     Thread.currentThread().interrupt();
                     break;
                 } catch (Exception e) {
-                    System.err.println("❌ Queue processor error: " + e.getMessage());
+                    System.err.println("Queue processor error: " + e.getMessage());
                 }
             }
         });
@@ -348,7 +348,7 @@ public class DownloadService {
             return song;
             
         } catch (Exception e) {
-            System.err.println("❌ Download failed for '" + task.getQuery() + "': " + e.getMessage());
+            System.err.println("Download failed for '" + task.getQuery() + "': " + e.getMessage());
             throw e;
         }
     }
@@ -388,7 +388,7 @@ public class DownloadService {
             return song;
             
         } catch (Exception e) {
-            System.err.println("❌ Failed to create song from file: " + e.getMessage());
+            System.err.println("Failed to create song from file: " + e.getMessage());
             throw new RuntimeException("Failed to process downloaded file", e);
         }
     }
@@ -417,12 +417,12 @@ public class DownloadService {
 
     // Notification methods
     private void notifyDownloadStarted(DownloadTask task) {
-        System.out.println("🔄 Started download: " + task.getQuery());
+        System.out.println("Started download: " + task.getQuery());
         listeners.forEach(listener -> {
             try {
                 listener.onDownloadStarted(task);
             } catch (Exception e) {
-                System.err.println("❌ Listener error: " + e.getMessage());
+                System.err.println("Listener error: " + e.getMessage());
             }
         });
     }
@@ -432,41 +432,41 @@ public class DownloadService {
             try {
                 listener.onDownloadProgress(task, progress);
             } catch (Exception e) {
-                System.err.println("❌ Listener error: " + e.getMessage());
+                System.err.println("Listener error: " + e.getMessage());
             }
         });
     }
 
     private void notifyDownloadCompleted(DownloadTask task, Song song) {
-        System.out.println("✅ Completed download: " + task.getQuery() + 
+        System.out.println("Completed download: " + task.getQuery() +
                           " (" + (task.getDurationMs() / 1000.0) + "s)");
         listeners.forEach(listener -> {
             try {
                 listener.onDownloadCompleted(task, song);
             } catch (Exception e) {
-                System.err.println("❌ Listener error: " + e.getMessage());
+                System.err.println("Listener error: " + e.getMessage());
             }
         });
     }
 
     private void notifyDownloadFailed(DownloadTask task, String error) {
-        System.out.println("❌ Failed download: " + task.getQuery() + " - " + error);
+        System.out.println("Failed download: " + task.getQuery() + " - " + error);
         listeners.forEach(listener -> {
             try {
                 listener.onDownloadFailed(task, error);
             } catch (Exception e) {
-                System.err.println("❌ Listener error: " + e.getMessage());
+                System.err.println("Listener error: " + e.getMessage());
             }
         });
     }
 
     private void notifyDownloadCancelled(DownloadTask task) {
-        System.out.println("🚫 Cancelled download: " + task.getQuery());
+        System.out.println("Cancelled download: " + task.getQuery());
         listeners.forEach(listener -> {
             try {
                 listener.onDownloadCancelled(task);
             } catch (Exception e) {
-                System.err.println("❌ Listener error: " + e.getMessage());
+                System.err.println("Listener error: " + e.getMessage());
             }
         });
     }

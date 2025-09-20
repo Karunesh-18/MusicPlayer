@@ -48,7 +48,7 @@ public class MusicLibraryService {
                     loadedCount++;
                 }
             } catch (Exception e) {
-                System.err.println("⚠️ Error loading file " + file.getName() + ": " + e.getMessage());
+                System.err.println("Error loading file " + file.getName() + ": " + e.getMessage());
             }
         }
 
