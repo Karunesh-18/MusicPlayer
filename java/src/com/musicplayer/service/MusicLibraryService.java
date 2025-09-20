@@ -2,6 +2,7 @@ package com.musicplayer.service;
 
 import com.musicplayer.model.*;
 import com.musicplayer.repository.SongRepository;
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,94 @@ public class MusicLibraryService {
         } catch (Exception e) {
             System.err.println("⚠️ Error loading songs from repository: " + e.getMessage());
         }
+    }
+
+    /**
+     * Load songs from a directory (for existing music)
+     */
+    public int loadFromDirectory(String directoryPath) {
+        File directory = new File(directoryPath);
+        if (!directory.exists() || !directory.isDirectory()) {
+            return 0;
+        }
+
+        File[] audioFiles = directory.listFiles((dir, name) ->
+            name.toLowerCase().endsWith(".mp3") ||
+            name.toLowerCase().endsWith(".wav") ||
+            name.toLowerCase().endsWith(".m4a"));
+
+        if (audioFiles == null) {
+            return 0;
+        }
+
+        int loadedCount = 0;
+        for (File file : audioFiles) {
+            try {
+                Song song = createSongFromFile(file);
+                if (song != null) {
+                    addSong(song);
+                    loadedCount++;
+                }
+            } catch (Exception e) {
+                System.err.println("⚠️ Error loading file " + file.getName() + ": " + e.getMessage());
+            }
+        }
+
+        return loadedCount;
+    }
+
+    /**
+     * Create a song from a file
+     */
+    private Song createSongFromFile(File file) {
+        String fileName = file.getName();
+        String[] parts = fileName.replace(".mp3", "").replace(".wav", "").replace(".m4a", "").split(" - ", 2);
+
+        String artist = parts.length > 1 ? parts[0] : "Unknown Artist";
+        String title = parts.length > 1 ? parts[1] : fileName.substring(0, fileName.lastIndexOf('.'));
+
+        Song song = new Song(title, artist);
+        song.setFilePath(file.getAbsolutePath());
+        return song;
+    }
+
+    /**
+     * Add a song from a file path with original query
+     */
+    public Song addSongFromFile(String filePath, String originalQuery) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            return null;
+        }
+
+        Song song = createSongFromFile(file);
+        if (song != null) {
+            addSong(song);
+        }
+
+        return song;
+    }
+
+    /**
+     * Get recommendations for a user based on listening history
+     */
+    public List<Song> getRecommendationsForUser(User user) {
+        List<Song> recentlyPlayed = user.getRecentlyPlayed();
+        if (recentlyPlayed.isEmpty()) {
+            return getMostPlayedSongs(10);
+        }
+
+        // Simple recommendation: songs by same artists as recently played
+        Set<String> preferredArtists = recentlyPlayed.stream()
+            .map(Song::getArtist)
+            .collect(Collectors.toSet());
+
+        return songs.values().stream()
+            .filter(song -> preferredArtists.contains(song.getArtist()))
+            .filter(song -> !recentlyPlayed.contains(song))
+            .sorted((s1, s2) -> Integer.compare(s2.getPlayCount(), s1.getPlayCount()))
+            .limit(10)
+            .collect(Collectors.toList());
     }
 
     // Song Management
