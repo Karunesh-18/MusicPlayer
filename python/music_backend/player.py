@@ -74,21 +74,6 @@ def play_audio_file(file_path):
             print('Could not play audio. Please check your audio player setup.')
             return False
                     
-        elif system == 'darwin':  # macOS
-            subprocess.run(['afplay', file_path], check=True)
-            return True
-            
-        elif system == 'linux':
-            # Try different Linux audio players
-            players = ['mpg123', 'mpv', 'vlc', 'mplayer', 'paplay']
-            for player in players:
-                try:
-                    subprocess.run([player, file_path], check=True)
-                    return True
-                except FileNotFoundError:
-                    continue
-            print('No suitable audio player found. Please install mpg123, mpv, vlc, or mplayer.')
-            return False
         else:
             print(f'Unsupported operating system: {system}')
             return False
@@ -98,10 +83,7 @@ def play_audio_file(file_path):
         return False
 
 def find_latest_audio_file(directory="./downloads"):
-    """
-    Find the most recently downloaded audio file.
-    Optimized for better performance with larger directories.
-    """
+   
     if not os.path.exists(directory):
         return None
 
