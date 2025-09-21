@@ -13,25 +13,18 @@ _python_executable_cache = None
 _cache_lock = threading.Lock()
 
 def get_python_executable():
-    """
-    Get the correct Python executable, handling JEP environment.
-    Uses caching to avoid repeated detection overhead.
-    """
+
     global _python_executable_cache
 
-    # Return cached result if available
     if _python_executable_cache is not None:
         return _python_executable_cache
 
     with _cache_lock:
-        # Double-check pattern for thread safety
+
         if _python_executable_cache is not None:
             return _python_executable_cache
-
-        # Check if we're running in JEP (Java Embedded Python)
+       
         if 'java' in sys.executable.lower():
-            # We're running in JEP, need to find the actual Python executable
-            # Try common Python paths with reduced timeout for faster detection
             python_paths = [
                 'python',
                 'python3',
@@ -50,11 +43,9 @@ def get_python_executable():
                 except:
                     continue
 
-            # If we can't find Python, try to use the one from PATH
             _python_executable_cache = 'python'
             return 'python'
         else:
-            # Normal Python execution
             _python_executable_cache = sys.executable
             return sys.executable
 
@@ -63,17 +54,14 @@ def download_song(query: str, output_dir: str = "./downloads"):
     Download a song using spotdl by searching for it.
     Optimized with reduced timeout and better performance.
     """
-    # Get the correct Python executable (now cached for performance)
     python_exe = get_python_executable()
 
-    # Ensure output directory exists
     try:
         os.makedirs(output_dir, exist_ok=True)
     except Exception as e:
         print(f"ERROR: Failed to create output directory '{output_dir}': {e}")
         return False
 
-    # Prepare optimized command with performance flags
     command = [
         python_exe, '-m', 'spotdl', 'download', query,
         '--output', output_dir,
@@ -86,13 +74,13 @@ def download_song(query: str, output_dir: str = "./downloads"):
     print("Downloading... (this may take 30-90 seconds)")
 
     try:
-        # Use spotdl to search and download with optimized timeout
+        # Used spotdl to search and download with optimized timeout
         subprocess.run(
             command,
             capture_output=True,
             text=True,
             check=True,
-            timeout=90  # Reduced from 300s (5min) to 90s for faster feedback
+            timeout=50
         )
 
         print(f"✓ Successfully downloaded: {query}")
