@@ -166,6 +166,6984 @@ This project demonstrates key OOP principles:
 - **requests (>=2.31.0):** HTTP requests
 - **urllib3 (>=2.0.4):** URL handling utilities
 
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
+## References
+
+- [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
+- [yt-dlp - YouTube Downloader](https://github.com/yt-dlp/yt-dlp)
+- [JEP - Java Embeded Python](https://github.com/ninia/jep)
+- [Java ProcessBuilder Documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html)
+
+
+a Hiding:** Private fields in classes like `Song` and `PythonBridge` protect internal state from direct external access
+- **Constructor Overloading:** The `Song` class provides multiple constructors for different initialization scenarios
+- **Method Overriding:** Standard `equals()`, `hashCode()`, and `toString()` methods are overridden in the `Song` class
+- **Abstraction:** The `PythonBridge` class abstracts the complexity of Java-Python communication behind simple method calls
+- **Composition:** The main application uses composition with `ArrayList<Song>` for library and queue management
+
+### Data Structures Used
+
+- **ArrayList<Song>:** For music library and play queue management
+- **HashMap<String, Object>:** For caching download results in PythonBridge
+- **ReentrantLock:** For thread-safe operations in PythonBridge
+- **LocalDateTime:** For timestamp management
+- **Primitive Types:** int, boolean, long for counters and flags
+
+### Design Patterns
+
+- **Bridge Pattern:** PythonBridge acts as a bridge between Java and Python components
+- **Singleton-like Pattern:** Static instances in SimpleMusicPlayer for global state
+- **Cache Pattern:** Result caching in PythonBridge for performance optimization
+
+### Data Flow
+
+1. **Application Startup:**
+   - Java main method initializes PythonBridge
+   - Scans downloads directory for existing music files
+   - Builds initial music library from found files
+
+2. **User Interaction:**
+   - Console menu captures user input
+   - Input validation and processing in Java
+
+3. **Music Operations:**
+   - **Search:** Java searches local library first
+   - **Download:** If not found, Java calls Python via ProcessBuilder
+   - **Playback:** Java delegates to Python player module
+   - **Queue Management:** Java manages queue state internally
+
+4. **Cross-Language Communication:**
+   - Java → Python: ProcessBuilder executes Python scripts
+   - Python → Java: Return codes and file system changes
+   - Data persistence through file system (downloads directory)
+
+## Performance Features
+
+- **Caching:** Download results cached to avoid redundant operations
+- **Thread Safety:** ReentrantLock ensures safe concurrent access
+- **Lazy Loading:** Music library built on-demand from file system
+- **Optimized Playback:** Best audio player method cached for subsequent use
+
+## Error Handling
+
+- **Input Validation:** User input sanitized and validated
+- **Process Management:** Timeout mechanisms for Python process calls
+- **Resource Cleanup:** Proper cleanup of processes and resources
+- **Graceful Degradation:** Fallback mechanisms for failed operations
+
+## Dependencies
+
+### Java Dependencies
+- Standard Java Library (no external JARs required)
+- Uses built-in ProcessBuilder for inter-process communication
+
+### Python Dependencies (requirements.txt)
+- **spotdl (>=4.2.0):** Music downloading from streaming platforms
+- **yt-dlp (>=2023.7.6):** YouTube audio extraction
+- **python-dotenv (>=1.0.0):** Environment variable management
+- **requests (>=2.31.0):** HTTP requests
+- **urllib3 (>=2.0.4):** URL handling utilities
+
+## UML Class Diagram
+
+![UML Class Diagram](UML(MusicPlayer).png)
+
+*Figure 1: UML Class Diagram showing the structure and relationships of the Music Player application components*
+
 ## References
 
 - [spotdl - Spotify Downloader](https://github.com/spotDL/spotify-downloader)
