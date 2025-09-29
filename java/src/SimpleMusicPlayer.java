@@ -71,7 +71,7 @@ public class SimpleMusicPlayer {
         System.out.println("=========================");
         System.out.println("1. Play song by name");
         System.out.println("2. Queue management");
-        System.out.println("3. See songs in library (" + musicLibrary.size() + " songs)");
+        System.out.println("3. See library (" + musicLibrary.size() + " songs)");
         System.out.println("0. Quit");
         System.out.println();
     }
@@ -86,7 +86,7 @@ public class SimpleMusicPlayer {
         } else if (choice == 0) {
             running = false;
         } else {
-            System.out.println("Invalid option. Try again.");
+            System.out.println("Invalid option.");
         }
     }
 
@@ -97,7 +97,7 @@ public class SimpleMusicPlayer {
         String query = scanner.nextLine().trim();
 
         if (query.isEmpty()) {
-            System.out.println("Please enter a song name.");
+            System.out.println("Enter a song name: ");
             return;
         }
 
@@ -109,8 +109,6 @@ public class SimpleMusicPlayer {
         }
 
         // Download and play new song
-        System.out.println("Getting " + query + " for you...");
-
         boolean downloadSuccess = pythonBridge.downloadSong(query);
         if (downloadSuccess) {
             String latestFile = pythonBridge.findLatestAudioFile();
